@@ -1,0 +1,94 @@
+---
+import type { GetStaticPaths } from 'astro';
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import { Icon } from 'astro-icon/components';
+import { getLangFromUrl } from '~/i18n/utils';
+import { useTranslations } from '~/i18n/translations';
+
+export const getStaticPaths = (() => {
+  return [{ params: { lang: 'en' } }, { params: { lang: 'fr' } }];
+}) satisfies GetStaticPaths;
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const metadata = {
+  title: t.contact.hero.title,
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero -->
+  <Hero tagline={t.contact.hero.tagline}>
+    <Fragment slot="title">
+      {t.contact.hero.title}
+    </Fragment>
+    <Fragment slot="subtitle">
+      {t.contact.hero.subtitle}
+    </Fragment>
+  </Hero>
+
+  <!-- Contact Cards -->
+  <section class="relative -mt-8 mb-12">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6">
+      <div class="grid gap-6 md:grid-cols-3">
+
+        <!-- Location -->
+        <div class="group relative bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-lg border border-gray-100 dark:border-slate-700 hover:shadow-xl hover:border-blue-200 dark:hover:border-blue-800 transition-all duration-300">
+          <div class="flex items-center justify-center w-14 h-14 rounded-xl bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 mb-5 group-hover:scale-110 transition-transform duration-300">
+            <Icon name="tabler:map-pin" class="w-7 h-7" />
+          </div>
+          <h3 class="text-sm font-semibold uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-1">{t.contact.location.title}</h3>
+          <p class="text-xl font-bold text-gray-900 dark:text-white">{t.contact.location.value}</p>
+        </div>
+
+        <!-- Email -->
+        <div class="group relative bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-lg border border-gray-100 dark:border-slate-700 hover:shadow-xl hover:border-blue-200 dark:hover:border-blue-800 transition-all duration-300">
+          <div class="flex items-center justify-center w-14 h-14 rounded-xl bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 mb-5 group-hover:scale-110 transition-transform duration-300">
+            <Icon name="tabler:mail" class="w-7 h-7" />
+          </div>
+          <h3 class="text-sm font-semibold uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-1">{t.contact.email.title}</h3>
+          <a
+            href={`mailto:${t.contact.email.value}`}
+            class="text-lg font-bold text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors break-all"
+          >
+            {t.contact.email.value}
+          </a>
+        </div>
+
+        <!-- LinkedIn -->
+        <div class="group relative bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-lg border border-gray-100 dark:border-slate-700 hover:shadow-xl hover:border-blue-200 dark:hover:border-blue-800 transition-all duration-300">
+          <div class="flex items-center justify-center w-14 h-14 rounded-xl bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 mb-5 group-hover:scale-110 transition-transform duration-300">
+            <Icon name="tabler:brand-linkedin" class="w-7 h-7" />
+          </div>
+          <h3 class="text-sm font-semibold uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-1">{t.contact.linkedin.title}</h3>
+          <a
+            href={t.contact.linkedin.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-lg font-bold text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+          >
+            {t.contact.linkedin.value}
+            <Icon name="tabler:external-link" class="inline w-4 h-4 ml-1 opacity-50" />
+          </a>
+        </div>
+
+      </div>
+
+      <!-- CTA Button -->
+      <div class="text-center mt-12">
+        <a
+          href={t.contact.linkedin.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-blue-600 hover:bg-blue-700 text-white font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300"
+        >
+          <Icon name="tabler:brand-linkedin" class="w-5 h-5" />
+          {t.contact.cta}
+          <Icon name="tabler:arrow-right" class="w-5 h-5" />
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

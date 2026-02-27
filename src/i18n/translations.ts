@@ -6,22 +6,22 @@ export const translations = {
       about: 'About Me',
       certifications: 'Certifications',
       projects: 'Projects',
-      blog: 'Blog',
+      contact: 'Contact',
     },
 
     // Home page
     home: {
       hero: {
-        tagline: 'Welcome',
-        title: "Hi, I'm <span class=\"text-accent highlight\">Kiran</span>",
-        subtitle: 'Software Engineer passionate about building modern, scalable applications and leveraging cloud technologies to deliver impactful solutions.',
+        tagline: 'Data Scientist · Lille, France',
+        title: "Hi, I'm <span class=\"text-accent highlight\">Kiran Tirumale</span>",
+        subtitle: 'Data Scientist with a strong track record of designing and delivering end-to-end data solutions — from recommendation engines and NLP pipelines to predictive models and GenAI applications — that drive real business impact.',
         cta: 'View Projects',
         ctaSecondary: 'About Me',
       },
       featuredProjects: {
-        tagline: 'Portfolio',
-        title: 'Featured Projects',
-        subtitle: 'A selection of projects I have worked on recently.',
+        tagline: 'Highlights',
+        title: 'Key Projects',
+        subtitle: 'Data & AI solutions that generated measurable business impact.',
       },
       latestPosts: {
         title: 'Latest from the Blog',
@@ -34,31 +34,31 @@ export const translations = {
       hero: {
         tagline: 'About Me',
         title: 'Get to know me',
-        subtitle: 'A passionate software engineer with a focus on modern web development, cloud infrastructure, and DevOps.',
+        subtitle: 'Data Scientist passionate about turning business challenges into actionable, data-driven solutions.',
       },
       summary: {
         title: 'Professional Summary',
-        content: '<p>I am a dedicated software engineer with experience in full-stack web development, cloud architecture, and DevOps practices. I enjoy tackling complex problems and delivering elegant, performant solutions.</p><p>My journey in tech has led me through diverse projects — from building responsive web applications to designing scalable cloud infrastructure. I am always eager to learn new technologies and share knowledge with the community.</p>',
+        content: '<p>I am a Data Scientist within the Data Department at Auchan Retail France, delivering cross-functional Data & AI projects across multiple business units. With a dual business and technical background, I build and deploy end-to-end data pipelines combining data science, data engineering, and project leadership to turn data into actionable insights and performance drivers.</p><p>I work closely with cross-functional stakeholders to translate business needs into practical, scalable data solutions — from initial concept through production deployment and adoption. My experience spans recommendation systems, NLP, predictive modeling, LLM-based applications, and data visualization across e-commerce, marketing, and retail operations.</p><p>Prior to my current role, I held positions as Team Leader / Business Analyst at SLK Software Services (India), Consultant at Tata Consulting Engineers, Project Manager at Quadrate Multilingual, and Consultant at Atos — working across BFSI, automotive, and industrial sectors in India, France, and the UK.</p>',
       },
       skills: {
         tagline: 'Expertise',
         title: 'Skills & Technologies',
-        subtitle: 'Technologies and tools I work with regularly.',
+        subtitle: 'Technical toolkit I use to deliver data-driven solutions.',
         items: [
-          { title: 'Frontend', description: 'React, TypeScript, Astro, Tailwind CSS, Next.js', icon: 'tabler:browser' },
-          { title: 'Backend', description: 'Node.js, Python, Java, REST APIs, GraphQL', icon: 'tabler:server' },
-          { title: 'Cloud & DevOps', description: 'AWS, Azure, Docker, Kubernetes, Terraform, CI/CD', icon: 'tabler:cloud' },
-          { title: 'Databases', description: 'PostgreSQL, MongoDB, Redis, DynamoDB', icon: 'tabler:database' },
-          { title: 'Tools & Practices', description: 'Git, Agile, TDD, Microservices, Clean Architecture', icon: 'tabler:tool' },
-          { title: 'Other', description: 'Linux, Networking, Security, System Design', icon: 'tabler:settings' },
+          { title: 'Machine Learning', description: 'Scikit-learn, NLP, Recommendation Systems, Feature Engineering, Text Exploration, Optimization', icon: 'tabler:brain' },
+          { title: 'Generative AI', description: 'LLM (Gemini, GPT), Embedding Models, HuggingFace, Transformers, Copilot, Claude Code', icon: 'tabler:sparkles' },
+          { title: 'Google Cloud Platform', description: 'BigQuery, Vertex AI, Cloud Composer (Airflow), Cloud Functions, Cloud Storage, Cloud Build', icon: 'tabler:cloud' },
+          { title: 'Data Pipeline & MLOps', description: 'Apache Airflow, Docker, Terraform, CI/CD, Model Deployment, REST APIs', icon: 'tabler:topology-ring-3' },
+          { title: 'Languages & Analysis', description: 'Python (certified), R, SQL, PySpark, Shell Scripting, Pandas, Matplotlib, NumPy', icon: 'tabler:code' },
+          { title: 'Reporting & Tools', description: 'Looker Studio, Power BI, Tableau, Streamlit, Git, Jira, Confluence, Notion', icon: 'tabler:chart-bar' },
         ],
       },
       stats: {
         items: [
-          { title: 'Years of Experience', amount: '5+' },
-          { title: 'Projects Completed', amount: '20+' },
-          { title: 'Certifications', amount: '5+' },
-          { title: 'Technologies', amount: '30+' },
+          { title: 'Years of Experience', amount: '15+' },
+          { title: 'Professional Certifications', amount: '6' },
+          { title: 'Languages Spoken', amount: '3' },
+          { title: 'Business Domains', amount: '5+' },
         ],
       },
     },
@@ -68,99 +68,232 @@ export const translations = {
       hero: {
         tagline: 'Credentials',
         title: 'Certifications',
-        subtitle: 'Professional certifications and credentials I have earned throughout my career.',
+        subtitle: 'Professional certifications earned throughout my career in Data Science and Cloud technologies.',
       },
       timeline: {
         title: 'Certification Timeline',
         items: [
           {
-            title: 'AWS Solutions Architect – Associate',
-            description: 'Amazon Web Services · Issued January 2025\nDesigning distributed systems and architectures on AWS.',
+            title: 'Apache Airflow 3 Fundamentals',
+            description: 'Astronomer Academy · 2025\nOrchestration of data pipelines and workflow automation with Apache Airflow.',
             icon: 'tabler:certificate',
+            link: 'https://www.credly.com/badges/34bc228a-b4c4-4ee6-a107-bdf0c7040ce7/public_url',
+            badge: '/images/badges/airflow.png',
           },
           {
-            title: 'Azure Fundamentals (AZ-900)',
-            description: 'Microsoft · Issued June 2024\nFoundational knowledge of cloud services and Azure.',
+            title: 'Generative AI Leader',
+            description: 'Google Cloud · 2025\nLeadership and strategy for Generative AI adoption in enterprise contexts.',
             icon: 'tabler:certificate',
+            link: 'https://www.credly.com/badges/ead6fb2f-25a0-463b-8de3-0a02f8a2c5af/public_url',
+            badge: '/images/badges/gen-ai-leader.png',
           },
           {
-            title: 'Certified Kubernetes Administrator (CKA)',
-            description: 'Cloud Native Computing Foundation · Issued March 2024\nAdministering Kubernetes clusters in production environments.',
+            title: 'Professional Machine Learning Engineer',
+            description: 'Google Cloud · 2024\nDesigning, building, and productionizing ML models on Google Cloud Platform.',
             icon: 'tabler:certificate',
+            link: 'https://www.credly.com/badges/001ea8ca-30a6-44de-872e-2d35e67c70bb/public_url',
+            badge: '/images/badges/ml-engineer.png',
           },
           {
-            title: 'HashiCorp Terraform Associate',
-            description: 'HashiCorp · Issued November 2023\nInfrastructure as Code with Terraform.',
+            title: 'From Data to Insights with Google Cloud',
+            description: 'Coursera (Google Cloud) · 2021\nData analysis, visualization, and insights using BigQuery and Google Cloud tools.',
             icon: 'tabler:certificate',
+            link: 'https://www.coursera.org/account/accomplishments/specialization/certificate/5GYHH9NQGKH3',
           },
           {
-            title: 'Professional Scrum Master I (PSM I)',
-            description: 'Scrum.org · Issued May 2023\nAgile project management and Scrum framework.',
+            title: 'Data Science for Everyone',
+            description: 'DataCamp · 2021\nFoundational data science concepts and methodologies.',
             icon: 'tabler:certificate',
+            link: 'https://www.datacamp.com/completed/statement-of-accomplishment/course/1e84809f57358bfdbeca24550c418f12b2ac6929',
+          },
+          {
+            title: 'Certified Entry-Level Python Programmer',
+            description: 'Python Institute (PCEP) · 2021\nCertified proficiency in Python programming fundamentals.',
+            icon: 'tabler:certificate',
+            link: 'https://www.credly.com/badges/ba1db914-ee9b-4adf-bc1c-bbe4e04539bc/public_url',
+            badge: '/images/badges/python-pcep.png',
           },
         ],
       },
     },
 
-    // Projects page
+    // Projects
     projects: {
-      hero: {
-        tagline: 'Portfolio',
-        title: 'Projects',
-        subtitle: 'Detailed showcase of projects I have built and contributed to.',
+      // Recommendation Engines page
+      recoEngines: {
+        hero: {
+          tagline: 'E-Commerce · Recommendation Systems',
+          title: 'Recommendation Engines',
+          subtitle: 'Four recommendation engines built for Auchan.fr, fully replacing a costly external solution (Target2Sell / Mirakl) and generating €1M+ in incremental revenue.',
+        },
+        items: [
+          {
+            id: 'similarity-food',
+            title: 'Similarity - Food Products',
+            tagline: 'NLP · Product Attributes',
+            content: '<p>Developed a <strong>content-based recommendation engine</strong> for food products on Auchan.fr. The engine leverages NLP techniques applied to product attributes (name, category, description, nutritional data) to compute similarity scores between items.</p><p>Product embeddings are generated using <strong>TF-IDF vectorization</strong> combined with cosine similarity. The model runs on a <strong>daily Airflow DAG</strong> that refreshes recommendations based on the latest product catalog. Achieved <strong>+25% add-to-cart rate</strong> compared to the previous external solution (Target2Sell).</p>',
+            items: [
+              { title: 'Python' },
+              { title: 'NLP / TF-IDF' },
+              { title: 'Cosine Similarity' },
+              { title: 'BigQuery' },
+              { title: 'Cloud Composer (Airflow)' },
+              { title: 'Cloud Functions' },
+            ],
+          },
+          {
+            id: 'similarity-nonfood',
+            title: 'Similarity - Non Food Products',
+            tagline: 'Embeddings · Product Catalog',
+            content: '<p>Built a <strong>similarity engine for non-food products</strong> (electronics, home, textile, etc.) where product attributes are less structured and descriptions are sparser than food.</p><p>Used <strong>sentence-transformer embeddings</strong> to capture semantic meaning from product titles and descriptions, combined with categorical feature encoding. A <strong>FAISS-based approximate nearest neighbor</strong> search enables real-time retrieval of the top-N similar products. Deployed as a <strong>Cloud Function</strong> with BigQuery as the feature store.</p>',
+            items: [
+              { title: 'Sentence Transformers' },
+              { title: 'FAISS' },
+              { title: 'Embeddings' },
+              { title: 'BigQuery' },
+              { title: 'Cloud Functions' },
+              { title: 'Python' },
+            ],
+          },
+          {
+            id: 'crosssell-nonfood',
+            title: 'Cross Sell - Non Food Products',
+            tagline: 'Association Rules · Sales History',
+            content: '<p>Designed a <strong>cross-sell recommendation engine</strong> for non-food products based on transactional sales history analysis. The engine identifies products frequently bought together to suggest complementary items at the product page level.</p><p>Implemented the <strong>Apriori algorithm</strong> on millions of transactions to extract high-confidence association rules (support, confidence, lift). Rules are filtered and ranked by business relevance and refreshed weekly via an <strong>Airflow pipeline</strong>. Contributed to a measurable increase in average basket value.</p>',
+            items: [
+              { title: 'Apriori Algorithm' },
+              { title: 'Association Rules' },
+              { title: 'PySpark' },
+              { title: 'BigQuery' },
+              { title: 'Cloud Composer (Airflow)' },
+              { title: 'Python' },
+            ],
+          },
+          {
+            id: 'crosssell-marketplace',
+            title: 'Cross Sell - Non Food Products - Marketplace',
+            tagline: 'Cold Start · Embeddings & LLM',
+            content: '<p>Tackled the <strong>cold start problem</strong> for marketplace products that have zero sales history — making traditional collaborative filtering or association rules ineffective.</p><p>Developed a hybrid approach combining <strong>product embedding similarity</strong> (using sentence-transformers on product descriptions) with <strong>LLM-based category mapping</strong> to match new marketplace items to existing Auchan catalog products with known cross-sell affinities. This allowed <strong>day-one recommendations</strong> for new sellers onboarding onto the marketplace.</p>',
+            items: [
+              { title: 'Embeddings' },
+              { title: 'LLM (Gemini)' },
+              { title: 'Sentence Transformers' },
+              { title: 'Cold Start Strategy' },
+              { title: 'BigQuery' },
+              { title: 'Cloud Functions' },
+            ],
+          },
+        ],
       },
-      items: [
-        {
-          tagline: 'Web Application',
-          title: 'Cloud Dashboard Platform',
-          content: '<p>A comprehensive cloud infrastructure monitoring dashboard that provides real-time visibility into multi-cloud environments. Built with a modern tech stack, the platform aggregates metrics from AWS, Azure, and GCP into a unified interface.</p><p>The project involved designing a scalable microservices architecture, implementing real-time WebSocket communication, and building an intuitive data visualization layer. Key challenges included handling high-frequency metric data streams and ensuring sub-second dashboard refresh rates.</p>',
-          items: [
-            { title: 'React & TypeScript' },
-            { title: 'Node.js & Express' },
-            { title: 'PostgreSQL & Redis' },
-            { title: 'Docker & Kubernetes' },
-            { title: 'WebSockets' },
-            { title: 'AWS CloudWatch API' },
-          ],
-          callToAction: { text: 'View on GitHub', href: '#', icon: 'tabler:brand-github' },
+      // Optimization Techniques page
+      optimization: {
+        hero: {
+          tagline: 'Hypermarkets · Predictive Modeling',
+          title: 'Optimization Techniques',
+          subtitle: 'Predictive models and optimization algorithms designed to maximize operational efficiency and revenue at Auchan Retail.',
         },
-        {
-          tagline: 'DevOps & Automation',
-          title: 'CI/CD Pipeline Framework',
-          content: '<p>Designed and implemented an enterprise-grade CI/CD pipeline framework that standardizes deployment workflows across multiple teams and services. The framework supports multi-environment deployments with automated testing, security scanning, and rollback capabilities.</p><p>This project reduced deployment time by 70% and eliminated manual release processes. It integrates with GitHub Actions, ArgoCD, and custom Kubernetes operators to provide a seamless developer experience from commit to production.</p>',
-          items: [
-            { title: 'GitHub Actions' },
-            { title: 'Terraform' },
-            { title: 'ArgoCD' },
-            { title: 'Kubernetes' },
-            { title: 'Helm Charts' },
-            { title: 'Python scripting' },
-          ],
-          callToAction: { text: 'View on GitHub', href: '#', icon: 'tabler:brand-github' },
+        items: [
+          {
+            id: 'surface-optimization',
+            title: 'Store Surface Area Optimization',
+            tagline: 'LightGBM · Optuna · Streamlit',
+            content: '<p>Designed a <strong>LightGBM predictive model</strong> to optimize the allocation of store surface area (m²) across product categories in order to <strong>maximize revenue per square meter</strong>.</p><p>The model was trained on historical sales, surface allocation, footfall, and seasonality data across hundreds of hypermarkets. <strong>Hyperparameter tuning</strong> was performed with Optuna using Bayesian optimization. The solution was delivered through a <strong>dedicated Streamlit application</strong>, enabling store managers and regional directors to simulate surface reallocation scenarios and visualize projected revenue impact before implementation.</p>',
+            items: [
+              { title: 'LightGBM' },
+              { title: 'Optuna' },
+              { title: 'Feature Engineering' },
+              { title: 'Streamlit' },
+              { title: 'BigQuery' },
+              { title: 'Python' },
+            ],
+          },
+        ],
+      },
+      // Gen AI Applications page
+      genai: {
+        hero: {
+          tagline: 'LLM · Generative AI',
+          title: 'Gen AI Applications',
+          subtitle: 'Generative AI and Large Language Model applications delivering practical business value across multiple domains.',
         },
-        {
-          tagline: 'Full-Stack Application',
-          title: 'E-Commerce Marketplace',
-          content: '<p>Built a modern e-commerce marketplace platform supporting multiple vendors with features including real-time inventory management, payment processing, and an AI-powered recommendation engine. The platform handles thousands of concurrent users with optimized database queries and caching strategies.</p><p>The project showcases end-to-end full-stack development from responsive UI design to scalable backend architecture, including search functionality, order management, and vendor analytics dashboards.</p>',
-          items: [
-            { title: 'Next.js' },
-            { title: 'Tailwind CSS' },
-            { title: 'Python & FastAPI' },
-            { title: 'MongoDB' },
-            { title: 'Stripe API' },
-            { title: 'Elasticsearch' },
-          ],
-          callToAction: { text: 'View on GitHub', href: '#', icon: 'tabler:brand-github' },
-        },
-      ],
+        items: [
+          {
+            id: 'verbatim-analysis',
+            title: 'Automated Verbatim Analysis (France & Portugal)',
+            tagline: 'NLP · Sentence Transformers · LLM',
+            content: '<p>Designed and deployed an <strong>end-to-end text analytics pipeline</strong> for automated customer feedback (verbatims) analysis serving both France and Portugal markets.</p><p>The pipeline combines binary classification using <strong>fine-tuned sentence transformers</strong>, multi-class classification across 5 predefined business categories, and sentiment analysis using LLM-based models. Results are exposed through a <strong>conversational LLM interface</strong> (powered by Gemini), enabling business teams to explore insights using natural language queries — e.g. "What are customers complaining about in Lille stores this month?"</p>',
+            items: [
+              { title: 'Sentence Transformers' },
+              { title: 'Fine-tuning' },
+              { title: 'LLM (Gemini)' },
+              { title: 'NLP Classification' },
+              { title: 'Sentiment Analysis' },
+              { title: 'Conversational AI' },
+            ],
+          },
+          {
+            id: 'label-extraction',
+            title: 'LLM-Powered Product Label Extraction',
+            tagline: 'OCR · LLM · Automation',
+            content: '<p>Developed an <strong>LLM-based solution</strong> to automatically extract structured information from fish product labels (via OCR from photos taken in-store), pre-fill associated regulatory forms, and recommend a <strong>top-10 list of matching internal product codes</strong> (CUG).</p><p>The pipeline uses <strong>Google Cloud Vision API</strong> for OCR, followed by Gemini for entity extraction and structured output generation. This reduced manual data entry time by over 80% for store teams and improved data accuracy for compliance.</p>',
+            items: [
+              { title: 'LLM (Gemini)' },
+              { title: 'OCR (Cloud Vision)' },
+              { title: 'Entity Extraction' },
+              { title: 'Cloud Functions' },
+              { title: 'Streamlit' },
+              { title: 'Python' },
+            ],
+          },
+          {
+            id: 'crosssell-marketplace-genai',
+            title: 'Cross Sell - Marketplace (Cold Start via LLM)',
+            tagline: 'Embeddings · LLM · Cold Start',
+            content: '<p>This project is also part of the <a href="/{lang}/projects/recommendation-engines#crosssell-marketplace" class="text-blue-600 dark:text-blue-400 underline hover:text-blue-800">Recommendation Engines</a> category. It uses <strong>LLM-based category mapping</strong> and embedding similarity to solve the cold start problem for marketplace products with no purchase history.</p><p>The GenAI component specifically leverages <strong>Gemini</strong> to understand product descriptions and semantically map them to the existing Auchan product taxonomy, enabling intelligent cross-sell recommendations from day one.</p>',
+            items: [
+              { title: 'LLM (Gemini)' },
+              { title: 'Embeddings' },
+              { title: 'Semantic Mapping' },
+              { title: 'Cold Start Strategy' },
+              { title: 'BigQuery' },
+              { title: 'Cloud Functions' },
+            ],
+            crossRef: true,
+          },
+        ],
+      },
     },
 
-    // Blog
+    // Blog (hidden but routes still exist)
     blog: {
       title: 'Blog',
-      subtitle: 'Thoughts, tutorials, and insights on software engineering.',
-      latestTitle: 'Latest from the Blog',
-      viewAll: 'View all posts',
+      subtitle: 'Coming soon.',
+    },
+
+    // Contact page
+    contact: {
+      hero: {
+        tagline: 'Get in Touch',
+        title: 'Contact',
+        subtitle: 'Feel free to reach out — I\'m always open to discussing data science, AI projects, or collaboration opportunities.',
+      },
+      location: {
+        title: 'Location',
+        value: 'Lille, France',
+        icon: 'tabler:map-pin',
+      },
+      email: {
+        title: 'University Email',
+        value: 'kiran.tirumalelakshmanarao@ieseg.fr',
+        icon: 'tabler:mail',
+      },
+      linkedin: {
+        title: 'LinkedIn',
+        value: 'linkedin.com/in/kiran-tl',
+        href: 'https://www.linkedin.com/in/kiran-tl',
+        icon: 'tabler:brand-linkedin',
+      },
+      cta: 'Connect on LinkedIn',
     },
   },
 
@@ -171,22 +304,22 @@ export const translations = {
       about: 'À propos',
       certifications: 'Certifications',
       projects: 'Projets',
-      blog: 'Blog',
+      contact: 'Contact',
     },
 
     // Home page
     home: {
       hero: {
-        tagline: 'Bienvenue',
-        title: "Salut, je suis <span class=\"text-accent highlight\">Kiran</span>",
-        subtitle: 'Ingénieur logiciel passionné par la création d\'applications modernes et scalables, et par l\'exploitation des technologies cloud pour des solutions à fort impact.',
+        tagline: 'Data Scientist · Lille, France',
+        title: "Salut, je suis <span class=\"text-accent highlight\">Kiran Tirumale</span>",
+        subtitle: 'Data Scientist avec une solide expérience dans la conception et la livraison de solutions data end-to-end — moteurs de recommandation, pipelines NLP, modèles prédictifs et applications GenAI — au service de l\'impact business.',
         cta: 'Voir les projets',
         ctaSecondary: 'À propos de moi',
       },
       featuredProjects: {
-        tagline: 'Portfolio',
-        title: 'Projets en vedette',
-        subtitle: 'Une sélection de projets sur lesquels j\'ai travaillé récemment.',
+        tagline: 'Temps forts',
+        title: 'Projets clés',
+        subtitle: 'Solutions Data & IA ayant généré un impact business mesurable.',
       },
       latestPosts: {
         title: 'Derniers articles du blog',
@@ -199,31 +332,31 @@ export const translations = {
       hero: {
         tagline: 'À propos',
         title: 'Apprenez à me connaître',
-        subtitle: 'Un ingénieur logiciel passionné, spécialisé dans le développement web moderne, l\'infrastructure cloud et le DevOps.',
+        subtitle: 'Data Scientist passionné par la transformation de problématiques business en solutions data concrètes et actionnables.',
       },
       summary: {
         title: 'Résumé professionnel',
-        content: '<p>Je suis un ingénieur logiciel dédié avec une expérience en développement web full-stack, architecture cloud et pratiques DevOps. J\'aime résoudre des problèmes complexes et fournir des solutions élégantes et performantes.</p><p>Mon parcours dans le monde de la technologie m\'a conduit à travers des projets variés — de la création d\'applications web responsives à la conception d\'infrastructures cloud scalables. Je suis toujours impatient d\'apprendre de nouvelles technologies et de partager mes connaissances avec la communauté.</p>',
+        content: '<p>Je suis Data Scientist au sein de la Direction Data d\'Auchan Retail France, intervenant de manière transverse auprès des différentes directions et équipes sur des projets Data et IA. Fort d\'une double culture business et technique, je conçois et déploie des pipelines end-to-end en combinant data science, data engineering et pilotage de projets pour transformer les données en leviers de décision et de performance.</p><p>J\'interviens en étroite collaboration avec les équipes métier afin de traduire des problématiques business en solutions data concrètes et actionnables, de leur conception à leur mise en production et à leur adoption. Mon expérience couvre les systèmes de recommandation, le NLP, la modélisation prédictive, les applications basées sur les LLM et la data visualisation — dans les domaines du e-commerce, du marketing et des opérations retail.</p><p>Avant mon poste actuel, j\'ai occupé des postes de Chef d\'équipe / Business Analyst chez SLK Software Services (Inde), Consultant chez Tata Consulting Engineers, Chef de projet chez Quadrate Multilingual, et Consultant chez Atos — travaillant dans les secteurs BFSI, automobile et industriel en Inde, en France et au Royaume-Uni.</p>',
       },
       skills: {
         tagline: 'Expertise',
         title: 'Compétences & Technologies',
-        subtitle: 'Technologies et outils avec lesquels je travaille régulièrement.',
+        subtitle: 'Boîte à outils technique pour livrer des solutions data-driven.',
         items: [
-          { title: 'Frontend', description: 'React, TypeScript, Astro, Tailwind CSS, Next.js', icon: 'tabler:browser' },
-          { title: 'Backend', description: 'Node.js, Python, Java, REST APIs, GraphQL', icon: 'tabler:server' },
-          { title: 'Cloud & DevOps', description: 'AWS, Azure, Docker, Kubernetes, Terraform, CI/CD', icon: 'tabler:cloud' },
-          { title: 'Bases de données', description: 'PostgreSQL, MongoDB, Redis, DynamoDB', icon: 'tabler:database' },
-          { title: 'Outils & Pratiques', description: 'Git, Agile, TDD, Microservices, Architecture propre', icon: 'tabler:tool' },
-          { title: 'Autres', description: 'Linux, Réseaux, Sécurité, Conception de systèmes', icon: 'tabler:settings' },
+          { title: 'Machine Learning', description: 'Scikit-learn, NLP, Moteurs de Recommandation, Feature Engineering, Exploration de Texte, Optimisation', icon: 'tabler:brain' },
+          { title: 'IA Générative', description: 'LLM (Gemini, GPT), Modèles Embeddings, HuggingFace, Transformers, Copilot, Claude Code', icon: 'tabler:sparkles' },
+          { title: 'Google Cloud Platform', description: 'BigQuery, Vertex AI, Cloud Composer (Airflow), Cloud Functions, Cloud Storage, Cloud Build', icon: 'tabler:cloud' },
+          { title: 'Pipeline Data & MLOps', description: 'Apache Airflow, Docker, Terraform, CI/CD, Déploiement de modèles, APIs REST', icon: 'tabler:topology-ring-3' },
+          { title: 'Langages & Analyse', description: 'Python (certifié), R, SQL, PySpark, Shell Scripting, Pandas, Matplotlib, NumPy', icon: 'tabler:code' },
+          { title: 'Reporting & Outils', description: 'Looker Studio, Power BI, Tableau, Streamlit, Git, Jira, Confluence, Notion', icon: 'tabler:chart-bar' },
         ],
       },
       stats: {
         items: [
-          { title: 'Années d\'expérience', amount: '5+' },
-          { title: 'Projets réalisés', amount: '20+' },
-          { title: 'Certifications', amount: '5+' },
-          { title: 'Technologies', amount: '30+' },
+          { title: 'Années d\'expérience', amount: '15+' },
+          { title: 'Certifications professionnelles', amount: '6' },
+          { title: 'Langues parlées', amount: '3' },
+          { title: 'Domaines métier', amount: '5+' },
         ],
       },
     },
@@ -233,99 +366,230 @@ export const translations = {
       hero: {
         tagline: 'Accréditations',
         title: 'Certifications',
-        subtitle: 'Certifications et accréditations professionnelles obtenues au cours de ma carrière.',
+        subtitle: 'Certifications professionnelles obtenues au cours de ma carrière en Data Science et technologies Cloud.',
       },
       timeline: {
         title: 'Chronologie des certifications',
         items: [
           {
-            title: 'AWS Solutions Architect – Associate',
-            description: 'Amazon Web Services · Délivrée en janvier 2025\nConception de systèmes distribués et architectures sur AWS.',
+            title: 'Apache Airflow 3 Fundamentals',
+            description: 'Astronomer Academy · 2025\nOrchestration de pipelines de données et automatisation des workflows avec Apache Airflow.',
             icon: 'tabler:certificate',
+            link: 'https://www.credly.com/badges/34bc228a-b4c4-4ee6-a107-bdf0c7040ce7/public_url',
+            badge: '/images/badges/airflow.png',
           },
           {
-            title: 'Azure Fundamentals (AZ-900)',
-            description: 'Microsoft · Délivrée en juin 2024\nConnaissances fondamentales des services cloud et d\'Azure.',
+            title: 'Generative AI Leader',
+            description: 'Google Cloud · 2025\nLeadership et stratégie pour l\'adoption de l\'IA générative en contexte entreprise.',
             icon: 'tabler:certificate',
+            link: 'https://www.credly.com/badges/ead6fb2f-25a0-463b-8de3-0a02f8a2c5af/public_url',
+            badge: '/images/badges/gen-ai-leader.png',
           },
           {
-            title: 'Certified Kubernetes Administrator (CKA)',
-            description: 'Cloud Native Computing Foundation · Délivrée en mars 2024\nAdministration de clusters Kubernetes en environnement de production.',
+            title: 'Professional Machine Learning Engineer',
+            description: 'Google Cloud · 2024\nConception, construction et mise en production de modèles ML sur Google Cloud Platform.',
             icon: 'tabler:certificate',
+            link: 'https://www.credly.com/badges/001ea8ca-30a6-44de-872e-2d35e67c70bb/public_url',
+            badge: '/images/badges/ml-engineer.png',
           },
           {
-            title: 'HashiCorp Terraform Associate',
-            description: 'HashiCorp · Délivrée en novembre 2023\nInfrastructure as Code avec Terraform.',
+            title: 'From Data to Insights with Google Cloud',
+            description: 'Coursera (Google Cloud) · 2021\nAnalyse de données, visualisation et insights avec BigQuery et les outils Google Cloud.',
             icon: 'tabler:certificate',
+            link: 'https://www.coursera.org/account/accomplishments/specialization/certificate/5GYHH9NQGKH3',
           },
           {
-            title: 'Professional Scrum Master I (PSM I)',
-            description: 'Scrum.org · Délivrée en mai 2023\nGestion de projet Agile et framework Scrum.',
+            title: 'Data Science for Everyone',
+            description: 'DataCamp · 2021\nConcepts fondamentaux et méthodologies de la data science.',
             icon: 'tabler:certificate',
+            link: 'https://www.datacamp.com/completed/statement-of-accomplishment/course/1e84809f57358bfdbeca24550c418f12b2ac6929',
+          },
+          {
+            title: 'Certified Entry-Level Python Programmer',
+            description: 'Python Institute (PCEP) · 2021\nMaîtrise certifiée des fondamentaux de la programmation Python.',
+            icon: 'tabler:certificate',
+            link: 'https://www.credly.com/badges/ba1db914-ee9b-4adf-bc1c-bbe4e04539bc/public_url',
+            badge: '/images/badges/python-pcep.png',
           },
         ],
       },
     },
 
-    // Projects page
+    // Projects
     projects: {
-      hero: {
-        tagline: 'Portfolio',
-        title: 'Projets',
-        subtitle: 'Présentation détaillée des projets que j\'ai construits et auxquels j\'ai contribué.',
+      // Recommendation Engines page
+      recoEngines: {
+        hero: {
+          tagline: 'E-Commerce · Systèmes de Recommandation',
+          title: 'Moteurs de Recommandation',
+          subtitle: 'Quatre moteurs de recommandation développés pour Auchan.fr, remplaçant une solution externe coûteuse (Target2Sell / Mirakl) et générant plus de 1 M€ de CA additionnel.',
+        },
+        items: [
+          {
+            id: 'similarity-food',
+            title: 'Similarité - Alimentaire',
+            tagline: 'NLP · Attributs Produit',
+            content: '<p>Développement d\'un <strong>moteur de recommandation content-based</strong> pour les produits alimentaires sur Auchan.fr. Le moteur exploite des techniques NLP appliquées aux attributs produit (nom, catégorie, description, données nutritionnelles) pour calculer des scores de similarité entre articles.</p><p>Les embeddings produit sont générés par <strong>vectorisation TF-IDF</strong> combinée à la similarité cosinus. Le modèle tourne via un <strong>DAG Airflow quotidien</strong> qui rafraîchit les recommandations à partir du dernier catalogue. Résultat : <strong>+25% de taux d\'ajout au panier</strong> par rapport à la solution précédente (Target2Sell).</p>',
+            items: [
+              { title: 'Python' },
+              { title: 'NLP / TF-IDF' },
+              { title: 'Similarité Cosinus' },
+              { title: 'BigQuery' },
+              { title: 'Cloud Composer (Airflow)' },
+              { title: 'Cloud Functions' },
+            ],
+          },
+          {
+            id: 'similarity-nonfood',
+            title: 'Similarité - Non Alimentaire',
+            tagline: 'Embeddings · Catalogue Produit',
+            content: '<p>Construction d\'un <strong>moteur de similarité pour les produits non alimentaires</strong> (électronique, maison, textile, etc.) où les attributs produit sont moins structurés et les descriptions plus pauvres que pour l\'alimentaire.</p><p>Utilisation d\'<strong>embeddings sentence-transformer</strong> pour capturer le sens sémantique des titres et descriptions, combinés à l\'encodage de features catégorielles. Une <strong>recherche FAISS approximate nearest neighbor</strong> permet la récupération en temps réel des top-N produits similaires. Déployé en <strong>Cloud Function</strong> avec BigQuery comme feature store.</p>',
+            items: [
+              { title: 'Sentence Transformers' },
+              { title: 'FAISS' },
+              { title: 'Embeddings' },
+              { title: 'BigQuery' },
+              { title: 'Cloud Functions' },
+              { title: 'Python' },
+            ],
+          },
+          {
+            id: 'crosssell-nonfood',
+            title: 'Cross Sell - Non Alimentaire',
+            tagline: 'Règles d\'Association · Historique de Ventes',
+            content: '<p>Conception d\'un <strong>moteur de recommandation cross-sell</strong> pour les produits non alimentaires basé sur l\'analyse de l\'historique transactionnel. Le moteur identifie les produits fréquemment achetés ensemble pour suggérer des articles complémentaires au niveau de la page produit.</p><p>Implémentation de l\'<strong>algorithme Apriori</strong> sur des millions de transactions pour extraire des règles d\'association à haute confiance (support, confiance, lift). Les règles sont filtrées et classées par pertinence métier, rafraîchies chaque semaine via un <strong>pipeline Airflow</strong>. Contribution mesurable à l\'augmentation du panier moyen.</p>',
+            items: [
+              { title: 'Algorithme Apriori' },
+              { title: 'Règles d\'Association' },
+              { title: 'PySpark' },
+              { title: 'BigQuery' },
+              { title: 'Cloud Composer (Airflow)' },
+              { title: 'Python' },
+            ],
+          },
+          {
+            id: 'crosssell-marketplace',
+            title: 'Cross Sell - Non Alimentaire - Marketplace',
+            tagline: 'Cold Start · Embeddings & LLM',
+            content: '<p>Résolution du <strong>problème de cold start</strong> pour les produits marketplace sans aucun historique de ventes — rendant le filtrage collaboratif ou les règles d\'association classiques inefficaces.</p><p>Développement d\'une approche hybride combinant la <strong>similarité par embeddings produit</strong> (via sentence-transformers sur les descriptions) avec un <strong>mapping de catégories par LLM</strong> pour associer les nouveaux articles marketplace aux produits existants du catalogue Auchan avec des affinités cross-sell connues. Cela a permis des <strong>recommandations dès le jour 1</strong> pour les nouveaux vendeurs intégrant la marketplace.</p>',
+            items: [
+              { title: 'Embeddings' },
+              { title: 'LLM (Gemini)' },
+              { title: 'Sentence Transformers' },
+              { title: 'Stratégie Cold Start' },
+              { title: 'BigQuery' },
+              { title: 'Cloud Functions' },
+            ],
+          },
+        ],
       },
-      items: [
-        {
-          tagline: 'Application Web',
-          title: 'Plateforme de tableau de bord Cloud',
-          content: '<p>Un tableau de bord complet de surveillance d\'infrastructure cloud offrant une visibilité en temps réel sur les environnements multi-cloud. Construit avec une stack technologique moderne, la plateforme agrège les métriques d\'AWS, Azure et GCP dans une interface unifiée.</p><p>Le projet impliquait la conception d\'une architecture microservices scalable, l\'implémentation de communication WebSocket en temps réel et la construction d\'une couche de visualisation de données intuitive. Les défis principaux comprenaient la gestion de flux de données métriques à haute fréquence et l\'assurance de taux de rafraîchissement du tableau de bord inférieurs à la seconde.</p>',
-          items: [
-            { title: 'React & TypeScript' },
-            { title: 'Node.js & Express' },
-            { title: 'PostgreSQL & Redis' },
-            { title: 'Docker & Kubernetes' },
-            { title: 'WebSockets' },
-            { title: 'AWS CloudWatch API' },
-          ],
-          callToAction: { text: 'Voir sur GitHub', href: '#', icon: 'tabler:brand-github' },
+      // Optimization Techniques page
+      optimization: {
+        hero: {
+          tagline: 'Hypermarchés · Modélisation Prédictive',
+          title: 'Techniques d\'Optimisation',
+          subtitle: 'Modèles prédictifs et algorithmes d\'optimisation conçus pour maximiser l\'efficacité opérationnelle et le chiffre d\'affaires chez Auchan Retail.',
         },
-        {
-          tagline: 'DevOps & Automatisation',
-          title: 'Framework de pipeline CI/CD',
-          content: '<p>Conception et implémentation d\'un framework de pipeline CI/CD de niveau entreprise standardisant les workflows de déploiement pour plusieurs équipes et services. Le framework prend en charge les déploiements multi-environnements avec tests automatisés, analyse de sécurité et capacités de rollback.</p><p>Ce projet a réduit le temps de déploiement de 70% et éliminé les processus de release manuels. Il s\'intègre avec GitHub Actions, ArgoCD et des opérateurs Kubernetes personnalisés pour fournir une expérience développeur fluide du commit à la production.</p>',
-          items: [
-            { title: 'GitHub Actions' },
-            { title: 'Terraform' },
-            { title: 'ArgoCD' },
-            { title: 'Kubernetes' },
-            { title: 'Helm Charts' },
-            { title: 'Scripts Python' },
-          ],
-          callToAction: { text: 'Voir sur GitHub', href: '#', icon: 'tabler:brand-github' },
+        items: [
+          {
+            id: 'surface-optimization',
+            title: 'Optimisation de la Surface Magasin',
+            tagline: 'LightGBM · Optuna · Streamlit',
+            content: '<p>Conception d\'un <strong>modèle prédictif LightGBM</strong> pour optimiser l\'allocation de la surface de vente (m²) par catégorie de produits afin de <strong>maximiser le chiffre d\'affaires au mètre carré</strong>.</p><p>Le modèle a été entraîné sur les données de ventes historiques, d\'allocation de surface, de fréquentation et de saisonnalité de centaines d\'hypermarchés. L\'<strong>optimisation des hyperparamètres</strong> a été réalisée avec Optuna en optimisation bayésienne. La solution est délivrée via une <strong>application Streamlit dédiée</strong>, permettant aux directeurs de magasins et régionaux de simuler des scénarios de réallocation et de visualiser l\'impact sur le CA avant mise en œuvre.</p>',
+            items: [
+              { title: 'LightGBM' },
+              { title: 'Optuna' },
+              { title: 'Feature Engineering' },
+              { title: 'Streamlit' },
+              { title: 'BigQuery' },
+              { title: 'Python' },
+            ],
+          },
+        ],
+      },
+      // Gen AI Applications page
+      genai: {
+        hero: {
+          tagline: 'LLM · IA Générative',
+          title: 'Applications Gen AI',
+          subtitle: 'Applications d\'IA générative et de Large Language Models générant une valeur business concrète dans de multiples domaines.',
         },
-        {
-          tagline: 'Application Full-Stack',
-          title: 'Marketplace E-Commerce',
-          content: '<p>Construction d\'une plateforme marketplace e-commerce moderne supportant plusieurs vendeurs avec des fonctionnalités incluant la gestion d\'inventaire en temps réel, le traitement des paiements et un moteur de recommandation alimenté par l\'IA. La plateforme gère des milliers d\'utilisateurs simultanés avec des requêtes de base de données optimisées et des stratégies de cache.</p><p>Le projet illustre le développement full-stack de bout en bout, de la conception d\'UI responsive à l\'architecture backend scalable, incluant la fonctionnalité de recherche, la gestion des commandes et les tableaux de bord d\'analyse pour les vendeurs.</p>',
-          items: [
-            { title: 'Next.js' },
-            { title: 'Tailwind CSS' },
-            { title: 'Python & FastAPI' },
-            { title: 'MongoDB' },
-            { title: 'Stripe API' },
-            { title: 'Elasticsearch' },
-          ],
-          callToAction: { text: 'Voir sur GitHub', href: '#', icon: 'tabler:brand-github' },
-        },
-      ],
+        items: [
+          {
+            id: 'verbatim-analysis',
+            title: 'Analyse automatisée de verbatims (France & Portugal)',
+            tagline: 'NLP · Sentence Transformers · LLM',
+            content: '<p>Conception et déploiement d\'une <strong>chaîne d\'analyse de texte end-to-end</strong> pour l\'analyse automatisée des retours clients (verbatims) couvrant les marchés France et Portugal.</p><p>Le pipeline combine la classification binaire via des <strong>sentence transformers avec fine-tuning</strong>, la classification multi-classes sur 5 catégories métier, et l\'analyse de sentiment via des modèles LLM. Les résultats sont exposés via une <strong>interface conversationnelle LLM</strong> (propulsée par Gemini), permettant aux équipes métier d\'explorer les insights en langage naturel — ex. « De quoi se plaignent les clients dans les magasins de Lille ce mois-ci ? »</p>',
+            items: [
+              { title: 'Sentence Transformers' },
+              { title: 'Fine-tuning' },
+              { title: 'LLM (Gemini)' },
+              { title: 'Classification NLP' },
+              { title: 'Analyse de Sentiment' },
+              { title: 'IA Conversationnelle' },
+            ],
+          },
+          {
+            id: 'label-extraction',
+            title: 'Extraction d\'étiquettes produit par LLM',
+            tagline: 'OCR · LLM · Automatisation',
+            content: '<p>Développement d\'une <strong>solution basée sur les LLM</strong> pour extraire automatiquement les informations structurées des étiquettes poisson (via OCR à partir de photos prises en magasin), pré-remplir les formulaires réglementaires associés et proposer un <strong>top-10 de codes internes produits correspondants</strong> (CUG).</p><p>Le pipeline utilise l\'<strong>API Google Cloud Vision</strong> pour l\'OCR, suivi de Gemini pour l\'extraction d\'entités et la génération de sorties structurées. Réduction de plus de 80% du temps de saisie manuelle pour les équipes magasin et amélioration de la qualité des données réglementaires.</p>',
+            items: [
+              { title: 'LLM (Gemini)' },
+              { title: 'OCR (Cloud Vision)' },
+              { title: 'Extraction d\'Entités' },
+              { title: 'Cloud Functions' },
+              { title: 'Streamlit' },
+              { title: 'Python' },
+            ],
+          },
+          {
+            id: 'crosssell-marketplace-genai',
+            title: 'Cross Sell - Marketplace (Cold Start via LLM)',
+            tagline: 'Embeddings · LLM · Cold Start',
+            content: '<p>Ce projet fait également partie de la catégorie <a href="/{lang}/projects/recommendation-engines#crosssell-marketplace" class="text-blue-600 dark:text-blue-400 underline hover:text-blue-800">Moteurs de Recommandation</a>. Il utilise le <strong>mapping de catégories par LLM</strong> et la similarité par embeddings pour résoudre le problème de cold start des produits marketplace sans historique d\'achat.</p><p>Le volet GenAI exploite spécifiquement <strong>Gemini</strong> pour comprendre les descriptions produit et les associer sémantiquement à la taxonomie produit Auchan existante, permettant des recommandations cross-sell intelligentes dès le premier jour.</p>',
+            items: [
+              { title: 'LLM (Gemini)' },
+              { title: 'Embeddings' },
+              { title: 'Mapping Sémantique' },
+              { title: 'Stratégie Cold Start' },
+              { title: 'BigQuery' },
+              { title: 'Cloud Functions' },
+            ],
+            crossRef: true,
+          },
+        ],
+      },
     },
-
-    // Blog
+    // Blog (hidden but routes still exist)
     blog: {
       title: 'Blog',
-      subtitle: 'Réflexions, tutoriels et perspectives sur l\'ingénierie logicielle.',
-      latestTitle: 'Derniers articles du blog',
-      viewAll: 'Voir tous les articles',
+      subtitle: 'Bientôt disponible.',
+    },
+    // Contact page
+    contact: {
+      hero: {
+        tagline: 'Me contacter',
+        title: 'Contact',
+        subtitle: 'N\'hésitez pas à me contacter — je suis toujours ouvert aux échanges autour de la data science, de l\'IA ou d\'opportunités de collaboration.',
+      },
+      location: {
+        title: 'Localisation',
+        value: 'Lille, France',
+        icon: 'tabler:map-pin',
+      },
+      email: {
+        title: 'Email universitaire',
+        value: 'kiran.tirumalelakshmanarao@ieseg.fr',
+        icon: 'tabler:mail',
+      },
+      linkedin: {
+        title: 'LinkedIn',
+        value: 'linkedin.com/in/kiran-tl',
+        href: 'https://www.linkedin.com/in/kiran-tl',
+        icon: 'tabler:brand-linkedin',
+      },
+      cta: 'Se connecter sur LinkedIn',
     },
   },
 } as const;

@@ -3,8 +3,6 @@ import type { GetStaticPaths } from 'astro';
 import Layout from '~/layouts/PageLayout.astro';
 import Hero from '~/components/widgets/Hero.astro';
 import Features2 from '~/components/widgets/Features2.astro';
-import Content from '~/components/widgets/Content.astro';
-import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
 import { getLangFromUrl } from '~/i18n/utils';
 import { useTranslations } from '~/i18n/translations';
 
@@ -16,7 +14,7 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 const metadata = {
-  title: lang === 'en' ? 'Kiran — Portfolio' : 'Kiran — Portfolio',
+  title: lang === 'en' ? 'Kiran Tirumale — Data Scientist' : 'Kiran Tirumale — Data Scientist',
   ignoreTitleTemplate: true,
 };
 ---
@@ -28,7 +26,7 @@ const metadata = {
       {
         variant: 'primary',
         text: t.home.hero.cta,
-        href: `/${lang}/projects`,
+        href: `/${lang}/projects/recommendation-engines`,
         icon: 'tabler:arrow-right',
       },
       {
@@ -36,7 +34,7 @@ const metadata = {
         href: `/${lang}/about`,
       },
     ]}
-    image={{ src: '~/assets/images/hero-image.png', alt: 'Kiran' }}
+    image={{ src: '~/assets/images/hero-image.png', alt: 'Kiran Tirumale' }}
   >
     <Fragment slot="tagline">{t.home.hero.tagline}</Fragment>
     <Fragment slot="title">
@@ -54,22 +52,22 @@ const metadata = {
     subtitle={t.home.featuredProjects.subtitle}
     items={[
       {
-        title: lang === 'en' ? 'Cloud Dashboard' : 'Tableau de bord Cloud',
-        description: lang === 'en' ? 'Real-time multi-cloud monitoring platform built with React, Node.js, and Kubernetes.' : 'Plateforme de surveillance multi-cloud en temps réel construite avec React, Node.js et Kubernetes.',
-        icon: 'tabler:cloud',
-        callToAction: { text: lang === 'en' ? 'Learn more' : 'En savoir plus', href: `/${lang}/projects` },
-      },
-      {
-        title: lang === 'en' ? 'CI/CD Framework' : 'Framework CI/CD',
-        description: lang === 'en' ? 'Enterprise-grade pipeline framework with GitHub Actions, Terraform, and ArgoCD.' : 'Framework de pipeline d\'entreprise avec GitHub Actions, Terraform et ArgoCD.',
-        icon: 'tabler:git-branch',
-        callToAction: { text: lang === 'en' ? 'Learn more' : 'En savoir plus', href: `/${lang}/projects` },
-      },
-      {
-        title: lang === 'en' ? 'E-Commerce Platform' : 'Plateforme E-Commerce',
-        description: lang === 'en' ? 'Full-stack marketplace with AI recommendations, built with Next.js and FastAPI.' : 'Marketplace full-stack avec recommandations IA, construit avec Next.js et FastAPI.',
+        title: lang === 'en' ? 'Recommendation Engines' : 'Moteurs de Recommandation',
+        description: lang === 'en' ? '4 recommendation engines for Auchan.fr replacing a costly external solution, generating €1M+ in incremental revenue.' : '4 moteurs de recommandation pour Auchan.fr remplaçant une solution externe coûteuse, générant +1M€ de CA additionnel.',
         icon: 'tabler:shopping-cart',
-        callToAction: { text: lang === 'en' ? 'Learn more' : 'En savoir plus', href: `/${lang}/projects` },
+        callToAction: { text: lang === 'en' ? 'Learn more' : 'En savoir plus', href: `/${lang}/projects/recommendation-engines` },
+      },
+      {
+        title: lang === 'en' ? 'Optimization Techniques' : 'Techniques d\'Optimisation',
+        description: lang === 'en' ? 'Predictive models to optimize store surface allocation and maximize revenue per square meter.' : 'Modèles prédictifs pour optimiser l\'allocation de surface magasin et maximiser le CA au mètre carré.',
+        icon: 'tabler:chart-line',
+        callToAction: { text: lang === 'en' ? 'Learn more' : 'En savoir plus', href: `/${lang}/projects/optimization-techniques` },
+      },
+      {
+        title: lang === 'en' ? 'Gen AI Applications' : 'Applications Gen AI',
+        description: lang === 'en' ? 'LLM-powered solutions: automated verbatim analysis, product label extraction, and conversational AI interfaces.' : 'Solutions LLM : analyse automatisée de verbatims, extraction d\'étiquettes, interfaces IA conversationnelles.',
+        icon: 'tabler:brain',
+        callToAction: { text: lang === 'en' ? 'Learn more' : 'En savoir plus', href: `/${lang}/projects/gen-ai-applications` },
       },
     ]}
   >
@@ -77,12 +75,4 @@ const metadata = {
       <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
     </Fragment>
   </Features2>
-
-  <!-- Latest Blog Posts -->
-  <BlogLatestPosts
-    title={t.home.latestPosts.title}
-    linkText={t.home.latestPosts.linkText}
-    linkUrl={`/${lang}/blog`}
-    count={3}
-  />
 </Layout>

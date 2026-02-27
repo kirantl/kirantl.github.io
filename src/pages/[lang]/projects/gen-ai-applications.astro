@@ -1,0 +1,82 @@
+---
+import type { GetStaticPaths } from 'astro';
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import { Icon } from 'astro-icon/components';
+import { getLangFromUrl } from '~/i18n/utils';
+import { useTranslations } from '~/i18n/translations';
+
+export const getStaticPaths = (() => {
+  return [{ params: { lang: 'en' } }, { params: { lang: 'fr' } }];
+}) satisfies GetStaticPaths;
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const page = t.projects.genai;
+
+const metadata = {
+  title: page.hero.title,
+};
+
+const crossRefLabel = lang === 'en' ? 'Also in: Recommendation Engines' : 'Également dans : Moteurs de Recommandation';
+---
+
+<Layout metadata={metadata}>
+  <Hero tagline={page.hero.tagline}>
+    <Fragment slot="title">{page.hero.title}</Fragment>
+    <Fragment slot="subtitle">{page.hero.subtitle}</Fragment>
+  </Hero>
+
+  <!-- Project articles -->
+  <section class="relative -mt-4 mb-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      {page.items.map((item: any, index: number) => {
+        // Replace {lang} placeholder in content with actual lang
+        const content = (item.content as string).replace(/\{lang\}/g, lang);
+        return (
+          <article id={item.id} class="scroll-mt-24 mb-12 last:mb-0">
+            <div class="relative rounded-2xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-800 p-6 sm:p-8 shadow-sm hover:shadow-md transition-shadow">
+              {/* Cross-reference badge */}
+              {item.crossRef && (
+                <div class="mb-3">
+                  <a
+                    href={`/${lang}/projects/recommendation-engines#crosssell-marketplace`}
+                    class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800 hover:bg-purple-100 dark:hover:bg-purple-900/40 transition-colors"
+                  >
+                    <Icon name="tabler:link" class="w-3.5 h-3.5" />
+                    {crossRefLabel}
+                  </a>
+                </div>
+              )}
+
+              {/* Tagline */}
+              <p class="text-sm font-semibold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider mb-2">{item.tagline}</p>
+
+              {/* Title */}
+              <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">{item.title}</h2>
+
+              {/* Content */}
+              <div class="prose prose-lg dark:prose-invert max-w-none mb-6" set:html={content} />
+
+              {/* Tech tags */}
+              <div class="flex flex-wrap gap-2">
+                {item.items.map((tech: any) => (
+                  <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300">
+                    {tech.title}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Connector line between articles */}
+            {index < page.items.length - 1 && (
+              <div class="flex justify-center py-4">
+                <div class="w-px h-8 bg-gray-200 dark:bg-gray-700"></div>
+              </div>
+            )}
+          </article>
+        );
+      })}
+    </div>
+  </section>
+</Layout>
