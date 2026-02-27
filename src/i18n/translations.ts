@@ -612,8 +612,8 @@ export const translations = {
   },
 } as const;
 
-export type Translations = (typeof translations)['en'];
+export type Translations = (typeof translations)['en'] | (typeof translations)['fr'];
 
-export function useTranslations(lang: 'en' | 'fr'): Translations {
+export function useTranslations(lang: 'en' | 'fr') {
   return translations[lang];
 }

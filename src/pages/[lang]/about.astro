@@ -52,13 +52,13 @@ const metadata = {
     tagline={t.about.skills.tagline}
     title={t.about.skills.title}
     subtitle={t.about.skills.subtitle}
-    items={t.about.skills.items}
+    items={[...t.about.skills.items]}
     columns={3}
   />
 
   <!-- Stats -->
   <Stats
     title={lang === 'en' ? 'In numbers' : 'En chiffres'}
-    stats={t.about.stats.items}
+    stats={[...t.about.stats.items]}
   />
 </Layout>

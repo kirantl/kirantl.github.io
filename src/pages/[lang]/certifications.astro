@@ -17,7 +17,7 @@ const metadata = {
   title: t.certifications.hero.title,
 };
 
-const certItems = t.certifications.timeline.items as Array<{
+const certItems = [...t.certifications.timeline.items] as Array<{
   title: string;
   description: string;
   icon: string;
