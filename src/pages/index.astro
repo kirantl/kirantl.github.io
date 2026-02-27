@@ -1,4 +1,27 @@
 ---
-// Root redirect to default locale
-return Astro.redirect('/en/');
+// Root redirect to default locale — includes OG tags for link previews
 ---
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Kiran Tirumale — Data Scientist</title>
+  <meta http-equiv="refresh" content="0;url=/en" />
+  <link rel="canonical" href="https://kirantl.github.io/en" />
+  <meta name="description" content="Kiran Tirumale — Data Scientist | Portfolio, projects, certifications, and blog." />
+  <meta property="og:title" content="Kiran Tirumale — Data Scientist" />
+  <meta property="og:description" content="Kiran Tirumale — Data Scientist | Portfolio, projects, certifications, and blog." />
+  <meta property="og:url" content="https://kirantl.github.io" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://kirantl.github.io/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="628" />
+  <meta property="og:site_name" content="Kiran Tirumale" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Kiran Tirumale — Data Scientist" />
+  <meta name="twitter:description" content="Kiran Tirumale — Data Scientist | Portfolio, projects, certifications, and blog." />
+  <meta name="twitter:image" content="https://kirantl.github.io/og-image.png" />
+</head>
+<body>
+  <a href="/en">Redirecting...</a>
+</body>
+</html>
