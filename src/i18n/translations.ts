@@ -310,7 +310,7 @@ export const translations = {
     // Navigation
     nav: {
       home: 'Accueil',
-      about: 'À propos',
+      about: 'À Propos de Moi',
       certifications: 'Certifications',
       projects: 'Projets',
       contact: 'Contact',
@@ -348,8 +348,8 @@ export const translations = {
     // About page
     about: {
       hero: {
-        tagline: 'À propos',
-        title: 'Apprenez à me connaître',
+        tagline: 'À Propos de Moi',
+        title: 'En savoir plus sur moi',
         subtitle: 'Data Scientist passionné par la transformation de problématiques business en solutions data concrètes et actionnables.',
       },
       summary: {
