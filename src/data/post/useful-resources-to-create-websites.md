@@ -7,6 +7,7 @@ tags:
   - front-end
   - tools
   - resources
+locale: en
 ---
 
 ## Magna nunc senectus torquent per fusce sapien ligula tempus cra
