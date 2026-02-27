@@ -80,7 +80,6 @@ export default defineConfig({
 
     astrowind({
       config: './src/config.yaml',
-      disableAdapter: true, // ← REQUIRED FOR GITHUB PAGES
     }),
   ],
 

@@ -43,15 +43,33 @@ export function getHeaderData(lang: 'en' | 'fr' = 'en') {
 }
 
 export function getFooterData(lang: 'en' | 'fr' = 'en') {
+  const t = navTranslations[lang];
   return {
-    links: [],
+    links: [
+      {
+        title: t.projects,
+        links: [
+          { text: t.recoEngines, href: `/${lang}/projects/recommendation-engines` },
+          { text: t.optimization, href: `/${lang}/projects/optimization-techniques` },
+          { text: t.genai, href: `/${lang}/projects/gen-ai-applications` },
+        ],
+      },
+      {
+        title: lang === 'en' ? 'Explore' : 'Explorer',
+        links: [
+          { text: t.about, href: `/${lang}/about` },
+          { text: t.certifications, href: `/${lang}/certifications` },
+          { text: t.contact, href: `/${lang}/contact` },
+        ],
+      },
+    ],
     secondaryLinks: [],
     socialLinks: [
       { ariaLabel: 'LinkedIn', icon: 'tabler:brand-linkedin', href: 'https://www.linkedin.com/in/kiran-tl' },
       { ariaLabel: 'Credly', icon: 'credly', href: 'https://www.credly.com/users/kirantl/badges#credly' },
     ],
     footNote: `
-      Made by <a class="text-muted hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 underline" href="https://www.linkedin.com/in/kiran-tl">Kiran Tirumale</a> · All rights reserved.
+      Made by <a class="text-muted hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 underline" href="https://www.linkedin.com/in/kiran-tl">Kiran Tirumale</a> · ${lang === 'en' ? 'Built with vibe coding — powered by GitHub Copilot + Claude Code, zero lines written by hand.' : 'Construit en vibe coding — propulsé par GitHub Copilot + Claude Code, zéro ligne écrite à la main.'}
     `,
   };
 }
