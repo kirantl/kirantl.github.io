@@ -23,6 +23,15 @@ export const translations = {
         title: 'Key Projects',
         subtitle: 'Data & AI solutions that generated measurable business impact.',
       },
+      thoughts: {
+        label: 'My thoughts on Generative AI',
+        date: 'February 2026',
+        paragraphs: [
+          'We once feared industrial robots would replace humans. Instead, they transformed work — automating manual tasks while creating entirely new industries.',
+          'Generative AI is following a similar path. Smaller teams will achieve more. Repetitive tasks will disappear. But human reasoning, judgment, and creativity will only grow in importance.',
+          'I see AI not as a replacement for developers, but as leverage — allowing us to focus less on technical friction and more on solving real business problems.',
+        ],
+      },
       latestPosts: {
         title: 'Latest from the Blog',
         linkText: 'View all posts',
@@ -320,6 +329,15 @@ export const translations = {
         tagline: 'Temps forts',
         title: 'Projets clés',
         subtitle: 'Solutions Data & IA ayant généré un impact business mesurable.',
+      },
+      thoughts: {
+        label: 'Mes réflexions sur l\'IA Générative',
+        date: 'Février 2026',
+        paragraphs: [
+          'Nous avons autrefois craint que les robots industriels remplacent les humains. En réalité, ils ont transformé le travail — en automatisant les tâches manuelles tout en créant de nouvelles industries et de nouveaux métiers.',
+          'L\'IA générative suit une trajectoire similaire. Des équipes plus réduites pourront accomplir davantage. Les tâches répétitives disparaîtront. Mais le raisonnement, le jugement et la créativité humains ne feront que gagner en importance.',
+          'Je ne vois pas l\'IA comme un remplacement des développeurs, mais comme un levier — nous permettant de réduire la friction technique pour nous concentrer davantage sur la résolution de véritables problématiques métier.',
+        ],
       },
       latestPosts: {
         title: 'Derniers articles du blog',
