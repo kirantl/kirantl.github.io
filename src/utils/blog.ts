@@ -100,13 +100,14 @@ const getNormalizedPost = async (post: CollectionEntry<'post'>): Promise<Post> =
   };
 };
 
-const load = async function (): Promise<Array<Post>> {
+const load = async function (locale?: string): Promise<Array<Post>> {
   const posts = await getCollection('post');
   const normalizedPosts = posts.map(async (post) => await getNormalizedPost(post));
 
   const results = (await Promise.all(normalizedPosts))
     .sort((a, b) => b.publishDate.valueOf() - a.publishDate.valueOf())
-    .filter((post) => !post.draft);
+    .filter((post) => !post.draft)
+    .filter((post) => !locale || (post as any).locale === locale || !(post as any).locale);
 
   return results;
 };
@@ -166,11 +167,12 @@ export const findPostsByIds = async (ids: Array<string>): Promise<Array<Post>> =
 };
 
 /** */
-export const findLatestPosts = async ({ count }: { count?: number }): Promise<Array<Post>> => {
+export const findLatestPosts = async ({ count, locale }: { count?: number; locale?: string }): Promise<Array<Post>> => {
   const _count = count || 4;
   const posts = await fetchPosts();
+  const filtered = locale ? posts.filter((post) => (post as any).locale === locale || !(post as any).locale) : posts;
 
-  return posts ? posts.slice(0, _count) : [];
+  return filtered ? filtered.slice(0, _count) : [];
 };
 
 /** */

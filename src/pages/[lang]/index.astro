@@ -1,0 +1,88 @@
+---
+import type { GetStaticPaths } from 'astro';
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import Content from '~/components/widgets/Content.astro';
+import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
+import { getLangFromUrl } from '~/i18n/utils';
+import { useTranslations } from '~/i18n/translations';
+
+export const getStaticPaths = (() => {
+  return [{ params: { lang: 'en' } }, { params: { lang: 'fr' } }];
+}) satisfies GetStaticPaths;
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const metadata = {
+  title: lang === 'en' ? 'Kiran — Portfolio' : 'Kiran — Portfolio',
+  ignoreTitleTemplate: true,
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero -->
+  <Hero
+    actions={[
+      {
+        variant: 'primary',
+        text: t.home.hero.cta,
+        href: `/${lang}/projects`,
+        icon: 'tabler:arrow-right',
+      },
+      {
+        text: t.home.hero.ctaSecondary,
+        href: `/${lang}/about`,
+      },
+    ]}
+    image={{ src: '~/assets/images/hero-image.png', alt: 'Kiran' }}
+  >
+    <Fragment slot="tagline">{t.home.hero.tagline}</Fragment>
+    <Fragment slot="title">
+      <Fragment set:html={t.home.hero.title} />
+    </Fragment>
+    <Fragment slot="subtitle">
+      {t.home.hero.subtitle}
+    </Fragment>
+  </Hero>
+
+  <!-- Featured Projects -->
+  <Features2
+    tagline={t.home.featuredProjects.tagline}
+    title={t.home.featuredProjects.title}
+    subtitle={t.home.featuredProjects.subtitle}
+    items={[
+      {
+        title: lang === 'en' ? 'Cloud Dashboard' : 'Tableau de bord Cloud',
+        description: lang === 'en' ? 'Real-time multi-cloud monitoring platform built with React, Node.js, and Kubernetes.' : 'Plateforme de surveillance multi-cloud en temps réel construite avec React, Node.js et Kubernetes.',
+        icon: 'tabler:cloud',
+        callToAction: { text: lang === 'en' ? 'Learn more' : 'En savoir plus', href: `/${lang}/projects` },
+      },
+      {
+        title: lang === 'en' ? 'CI/CD Framework' : 'Framework CI/CD',
+        description: lang === 'en' ? 'Enterprise-grade pipeline framework with GitHub Actions, Terraform, and ArgoCD.' : 'Framework de pipeline d\'entreprise avec GitHub Actions, Terraform et ArgoCD.',
+        icon: 'tabler:git-branch',
+        callToAction: { text: lang === 'en' ? 'Learn more' : 'En savoir plus', href: `/${lang}/projects` },
+      },
+      {
+        title: lang === 'en' ? 'E-Commerce Platform' : 'Plateforme E-Commerce',
+        description: lang === 'en' ? 'Full-stack marketplace with AI recommendations, built with Next.js and FastAPI.' : 'Marketplace full-stack avec recommandations IA, construit avec Next.js et FastAPI.',
+        icon: 'tabler:shopping-cart',
+        callToAction: { text: lang === 'en' ? 'Learn more' : 'En savoir plus', href: `/${lang}/projects` },
+      },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Features2>
+
+  <!-- Latest Blog Posts -->
+  <BlogLatestPosts
+    title={t.home.latestPosts.title}
+    linkText={t.home.latestPosts.linkText}
+    linkUrl={`/${lang}/blog`}
+    count={3}
+  />
+</Layout>

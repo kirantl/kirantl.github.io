@@ -1,0 +1,64 @@
+---
+import type { GetStaticPaths } from 'astro';
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Content from '~/components/widgets/Content.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import Stats from '~/components/widgets/Stats.astro';
+import { getLangFromUrl } from '~/i18n/utils';
+import { useTranslations } from '~/i18n/translations';
+
+export const getStaticPaths = (() => {
+  return [{ params: { lang: 'en' } }, { params: { lang: 'fr' } }];
+}) satisfies GetStaticPaths;
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const metadata = {
+  title: t.about.hero.title,
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero -->
+  <Hero
+    tagline={t.about.hero.tagline}
+  >
+    <Fragment slot="title">
+      {t.about.hero.title}
+    </Fragment>
+    <Fragment slot="subtitle">
+      {t.about.hero.subtitle}
+    </Fragment>
+  </Hero>
+
+  <!-- Professional Summary -->
+  <Content
+    title={t.about.summary.title}
+    content={t.about.summary.content}
+    image={{
+      src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      alt: lang === 'en' ? 'Developer workspace' : 'Espace de travail développeur',
+    }}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+  <!-- Skills & Technologies -->
+  <Features2
+    tagline={t.about.skills.tagline}
+    title={t.about.skills.title}
+    subtitle={t.about.skills.subtitle}
+    items={t.about.skills.items}
+    columns={3}
+  />
+
+  <!-- Stats -->
+  <Stats
+    title={lang === 'en' ? 'In numbers' : 'En chiffres'}
+    stats={t.about.stats.items}
+  />
+</Layout>

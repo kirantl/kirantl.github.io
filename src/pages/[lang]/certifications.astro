@@ -1,0 +1,43 @@
+---
+import type { GetStaticPaths } from 'astro';
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import { getLangFromUrl } from '~/i18n/utils';
+import { useTranslations } from '~/i18n/translations';
+
+export const getStaticPaths = (() => {
+  return [{ params: { lang: 'en' } }, { params: { lang: 'fr' } }];
+}) satisfies GetStaticPaths;
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const metadata = {
+  title: t.certifications.hero.title,
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero -->
+  <Hero
+    tagline={t.certifications.hero.tagline}
+  >
+    <Fragment slot="title">
+      {t.certifications.hero.title}
+    </Fragment>
+    <Fragment slot="subtitle">
+      {t.certifications.hero.subtitle}
+    </Fragment>
+  </Hero>
+
+  <!-- Certification Timeline -->
+  <Steps
+    title={t.certifications.timeline.title}
+    items={t.certifications.timeline.items}
+    image={{
+      src: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+      alt: lang === 'en' ? 'Certifications' : 'Certifications',
+    }}
+  />
+</Layout>

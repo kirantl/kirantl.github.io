@@ -27,6 +27,13 @@ export default defineConfig({
   adapter: undefined,
   outDir: './docs',
 
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'fr'],
+    routing: {
+      prefixDefaultLocale: true,
+    },
+  },
 
   integrations: [
     tailwind({

@@ -1,0 +1,60 @@
+---
+import type { GetStaticPaths } from 'astro';
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Content from '~/components/widgets/Content.astro';
+import { getLangFromUrl } from '~/i18n/utils';
+import { useTranslations } from '~/i18n/translations';
+
+export const getStaticPaths = (() => {
+  return [{ params: { lang: 'en' } }, { params: { lang: 'fr' } }];
+}) satisfies GetStaticPaths;
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const metadata = {
+  title: t.projects.hero.title,
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero -->
+  <Hero
+    tagline={t.projects.hero.tagline}
+  >
+    <Fragment slot="title">
+      {t.projects.hero.title}
+    </Fragment>
+    <Fragment slot="subtitle">
+      {t.projects.hero.subtitle}
+    </Fragment>
+  </Hero>
+
+  <!-- Project sections -->
+  {t.projects.items.map((project, index) => (
+    <Content
+      isReversed={index % 2 !== 0}
+      isAfterContent={index > 0}
+      tagline={project.tagline}
+      title={project.title}
+      content={project.content}
+      items={project.items}
+      callToAction={project.callToAction}
+      image={{
+        src: index === 0
+          ? 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+          : index === 1
+          ? 'https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+          : 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+        alt: project.title,
+      }}
+    >
+      {index === 0 && (
+        <Fragment slot="bg">
+          <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+        </Fragment>
+      )}
+    </Content>
+  ))}
+</Layout>
