@@ -1,9 +1,11 @@
 ---
+import { Icon } from 'astro-icon/components';
 import { SITE } from 'astrowind:config';
 ---
 
 <span
-  class="self-center ml-2 rtl:ml-0 rtl:mr-2 text-2xl md:text-xl font-bold text-gray-900 whitespace-nowrap dark:text-white"
+  class="self-center ml-2 rtl:ml-0 rtl:mr-2 text-2xl md:text-xl font-bold text-gray-900 whitespace-nowrap dark:text-white flex items-center gap-1.5"
 >
-  � {SITE?.name}
+  <Icon name="tabler:chart-dots-3" class="w-6 h-6 text-blue-600 dark:text-blue-400" />
+  {SITE?.name}
 </span>

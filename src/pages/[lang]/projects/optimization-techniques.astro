@@ -1,0 +1,55 @@
+---
+import type { GetStaticPaths } from 'astro';
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import { getLangFromUrl } from '~/i18n/utils';
+import { useTranslations } from '~/i18n/translations';
+
+export const getStaticPaths = (() => {
+  return [{ params: { lang: 'en' } }, { params: { lang: 'fr' } }];
+}) satisfies GetStaticPaths;
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const page = t.projects.optimization;
+
+const metadata = {
+  title: page.hero.title,
+};
+---
+
+<Layout metadata={metadata}>
+  <Hero tagline={page.hero.tagline}>
+    <Fragment slot="title">{page.hero.title}</Fragment>
+    <Fragment slot="subtitle">{page.hero.subtitle}</Fragment>
+  </Hero>
+
+  <!-- Project articles -->
+  <section class="relative -mt-4 mb-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      {page.items.map((item: any, index: number) => (
+        <article id={item.id} class="scroll-mt-24 mb-12 last:mb-0">
+          <div class="relative rounded-2xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-800 p-6 sm:p-8 shadow-sm hover:shadow-md transition-shadow">
+            {/* Tagline */}
+            <p class="text-sm font-semibold text-amber-600 dark:text-amber-400 uppercase tracking-wider mb-2">{item.tagline}</p>
+
+            {/* Title */}
+            <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">{item.title}</h2>
+
+            {/* Content */}
+            <div class="prose prose-lg dark:prose-invert max-w-none mb-6" set:html={item.content} />
+
+            {/* Tech tags */}
+            <div class="flex flex-wrap gap-2">
+              {item.items.map((tech: any) => (
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300">
+                  {tech.title}
+                </span>
+              ))}
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+</Layout>

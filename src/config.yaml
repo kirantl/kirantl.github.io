@@ -1,5 +1,5 @@
 site:
-  name: Kiran
+  name: Kiran Tirumale
   site: 'https://kirantl.github.io'
   base: '/'
   trailingSlash: false
@@ -9,14 +9,14 @@ site:
 # Default SEO metadata
 metadata:
   title:
-    default: Kiran
-    template: '%s — Kiran'
-  description: "Kiran's personal portfolio — Software Engineer, projects, certifications, and blog."
+    default: Kiran Tirumale
+    template: '%s — Kiran Tirumale'
+  description: "Kiran Tirumale — Data Scientist | Portfolio, projects, certifications, and blog."
   robots:
     index: true
     follow: true
   openGraph:
-    site_name: Kiran
+    site_name: Kiran Tirumale
     images:
       - url: '~/assets/images/default.png'
         width: 1200
