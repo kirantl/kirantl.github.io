@@ -128,6 +128,33 @@ export const translations = {
 
     // Projects
     projects: {
+      hero: {
+        tagline: 'Projects',
+        title: 'My Projects',
+        subtitle: 'Throughout my career at Auchan Retail, I have designed and delivered end-to-end Data and AI solutions that directly address business challenges — from personalizing the e-commerce experience with intelligent recommendation systems, to optimizing physical store operations through predictive modeling, to leveraging Large Language Models for automating complex workflows. Each project follows a common thread: translating a real business need into a scalable, production-grade data solution that generates measurable impact.',
+      },
+      categories: {
+        tagline: 'Explore',
+        title: 'Project Categories',
+        subtitle: 'Select a category to discover the projects in detail.',
+        items: [
+          {
+            title: 'Recommendation Engines',
+            description: '4 recommendation engines for Auchan.fr replacing a costly external solution, generating €1M+ in incremental revenue.',
+            cta: 'Learn more',
+          },
+          {
+            title: 'Optimization Techniques',
+            description: 'Predictive models to optimize store surface allocation and maximize revenue per square meter.',
+            cta: 'Learn more',
+          },
+          {
+            title: 'Gen AI Applications',
+            description: 'LLM-powered solutions: automated verbatim analysis, product label extraction, and conversational AI interfaces.',
+            cta: 'Learn more',
+          },
+        ],
+      },
       // Recommendation Engines page
       recoEngines: {
         hero: {
@@ -140,6 +167,7 @@ export const translations = {
             id: 'similarity-food',
             title: 'Similarity - Food Products',
             tagline: 'NLP · Product Attributes',
+            icon: 'tabler:salad',
             content: '<p>Developed a <strong>content-based recommendation engine</strong> for food products on Auchan.fr. The engine leverages NLP techniques applied to product attributes (name, category, description, nutritional data) to compute similarity scores between items.</p><p>Product embeddings are generated using <strong>TF-IDF vectorization</strong> combined with cosine similarity. The model runs on a <strong>daily Airflow DAG</strong> that refreshes recommendations based on the latest product catalog. Achieved <strong>+25% add-to-cart rate</strong> compared to the previous external solution (Target2Sell).</p>',
             items: [
               { title: 'Python' },
@@ -154,6 +182,7 @@ export const translations = {
             id: 'similarity-nonfood',
             title: 'Similarity - Non Food Products',
             tagline: 'Embeddings · Product Catalog',
+            icon: 'tabler:device-laptop',
             content: '<p>Built a <strong>similarity engine for non-food products</strong> (electronics, home, textile, etc.) where product attributes are less structured and descriptions are sparser than food.</p><p>Used <strong>sentence-transformer embeddings</strong> to capture semantic meaning from product titles and descriptions, combined with categorical feature encoding. A <strong>FAISS-based approximate nearest neighbor</strong> search enables real-time retrieval of the top-N similar products. Deployed as a <strong>Cloud Function</strong> with BigQuery as the feature store.</p>',
             items: [
               { title: 'Sentence Transformers' },
@@ -168,6 +197,7 @@ export const translations = {
             id: 'crosssell-nonfood',
             title: 'Cross Sell - Non Food Products',
             tagline: 'Association Rules · Sales History',
+            icon: 'tabler:arrows-exchange',
             content: '<p>Designed a <strong>cross-sell recommendation engine</strong> for non-food products based on transactional sales history analysis. The engine identifies products frequently bought together to suggest complementary items at the product page level.</p><p>Implemented the <strong>Apriori algorithm</strong> on millions of transactions to extract high-confidence association rules (support, confidence, lift). Rules are filtered and ranked by business relevance and refreshed weekly via an <strong>Airflow pipeline</strong>. Contributed to a measurable increase in average basket value.</p>',
             items: [
               { title: 'Apriori Algorithm' },
@@ -182,6 +212,7 @@ export const translations = {
             id: 'crosssell-marketplace',
             title: 'Cross Sell - Non Food Products - Marketplace',
             tagline: 'Cold Start · Embeddings & LLM',
+            icon: 'tabler:building-store',
             content: '<p>Tackled the <strong>cold start problem</strong> for marketplace products that have zero sales history — making traditional collaborative filtering or association rules ineffective.</p><p>Developed a hybrid approach combining <strong>product embedding similarity</strong> (using sentence-transformers on product descriptions) with <strong>LLM-based category mapping</strong> to match new marketplace items to existing Auchan catalog products with known cross-sell affinities. This allowed <strong>day-one recommendations</strong> for new sellers onboarding onto the marketplace.</p>',
             items: [
               { title: 'Embeddings' },
@@ -206,6 +237,7 @@ export const translations = {
             id: 'surface-optimization',
             title: 'Store Surface Area Optimization',
             tagline: 'LightGBM · Optuna · Streamlit',
+            icon: 'tabler:ruler-measure',
             content: '<p>Designed a <strong>LightGBM predictive model</strong> to optimize the allocation of store surface area (m²) across product categories in order to <strong>maximize revenue per square meter</strong>.</p><p>The model was trained on historical sales, surface allocation, footfall, and seasonality data across hundreds of hypermarkets. <strong>Hyperparameter tuning</strong> was performed with Optuna using Bayesian optimization. The solution was delivered through a <strong>dedicated Streamlit application</strong>, enabling store managers and regional directors to simulate surface reallocation scenarios and visualize projected revenue impact before implementation.</p>',
             items: [
               { title: 'LightGBM' },
@@ -230,6 +262,7 @@ export const translations = {
             id: 'verbatim-analysis',
             title: 'Automated Verbatim Analysis (France & Portugal)',
             tagline: 'NLP · Sentence Transformers · LLM',
+            icon: 'tabler:message-chatbot',
             content: '<p>Designed and deployed an <strong>end-to-end text analytics pipeline</strong> for automated customer feedback (verbatims) analysis serving both France and Portugal markets.</p><p>The pipeline combines binary classification using <strong>fine-tuned sentence transformers</strong>, multi-class classification across 5 predefined business categories, and sentiment analysis using LLM-based models. Results are exposed through a <strong>conversational LLM interface</strong> (powered by Gemini), enabling business teams to explore insights using natural language queries — e.g. "What are customers complaining about in Lille stores this month?"</p>',
             items: [
               { title: 'Sentence Transformers' },
@@ -244,6 +277,7 @@ export const translations = {
             id: 'label-extraction',
             title: 'LLM-Powered Product Label Extraction',
             tagline: 'OCR · LLM · Automation',
+            icon: 'tabler:tag',
             content: '<p>Developed an <strong>LLM-based solution</strong> to automatically extract structured information from fish product labels (via OCR from photos taken in-store), pre-fill associated regulatory forms, and recommend a <strong>top-10 list of matching internal product codes</strong> (CUG).</p><p>The pipeline uses <strong>Google Cloud Vision API</strong> for OCR, followed by Gemini for entity extraction and structured output generation. This reduced manual data entry time by over 80% for store teams and improved data accuracy for compliance.</p>',
             items: [
               { title: 'LLM (Gemini)' },
@@ -258,6 +292,7 @@ export const translations = {
             id: 'crosssell-marketplace-genai',
             title: 'Cross Sell - Marketplace (Cold Start via LLM)',
             tagline: 'Embeddings · LLM · Cold Start',
+            icon: 'tabler:sparkles',
             content: '<p>This project is also part of the <a href="/{lang}/projects/recommendation-engines#crosssell-marketplace" class="text-blue-600 dark:text-blue-400 underline hover:text-blue-800">Recommendation Engines</a> category. It uses <strong>LLM-based category mapping</strong> and embedding similarity to solve the cold start problem for marketplace products with no purchase history.</p><p>The GenAI component specifically leverages <strong>Gemini</strong> to understand product descriptions and semantically map them to the existing Auchan product taxonomy, enabling intelligent cross-sell recommendations from day one.</p>',
             items: [
               { title: 'LLM (Gemini)' },
@@ -435,6 +470,33 @@ export const translations = {
 
     // Projects
     projects: {
+      hero: {
+        tagline: 'Projets',
+        title: 'Mes Projets',
+        subtitle: 'Tout au long de ma carrière chez Auchan Retail, j\'ai conçu et déployé des solutions Data et IA de bout en bout répondant directement aux enjeux métier \u2014 de la personnalisation de l\'expérience e-commerce via des systèmes de recommandation intelligents, à l\'optimisation des opérations en magasin grâce à la modélisation prédictive, en passant par l\'exploitation de Large Language Models pour automatiser des processus complexes. Chaque projet suit un fil conducteur : transformer un besoin métier concret en une solution data scalable et industrialisée, générant un impact mesurable.',
+      },
+      categories: {
+        tagline: 'Explorer',
+        title: 'Catégories de projets',
+        subtitle: 'Sélectionnez une catégorie pour découvrir les projets en détail.',
+        items: [
+          {
+            title: 'Moteurs de Recommandation',
+            description: '4 moteurs de recommandation pour Auchan.fr remplaçant une solution externe coûteuse, générant +1M€ de CA additionnel.',
+            cta: 'En savoir plus',
+          },
+          {
+            title: 'Techniques d\'Optimisation',
+            description: 'Modèles prédictifs pour optimiser l\'allocation de surface magasin et maximiser le CA au mètre carré.',
+            cta: 'En savoir plus',
+          },
+          {
+            title: 'Applications Gen AI',
+            description: 'Solutions LLM : analyse automatisée de verbatims, extraction d\'étiquettes, interfaces IA conversationnelles.',
+            cta: 'En savoir plus',
+          },
+        ],
+      },
       // Recommendation Engines page
       recoEngines: {
         hero: {
@@ -447,6 +509,7 @@ export const translations = {
             id: 'similarity-food',
             title: 'Similarité - Alimentaire',
             tagline: 'NLP · Attributs Produit',
+            icon: 'tabler:salad',
             content: '<p>Développement d\'un <strong>moteur de recommandation content-based</strong> pour les produits alimentaires sur Auchan.fr. Le moteur exploite des techniques NLP appliquées aux attributs produit (nom, catégorie, description, données nutritionnelles) pour calculer des scores de similarité entre articles.</p><p>Les embeddings produit sont générés par <strong>vectorisation TF-IDF</strong> combinée à la similarité cosinus. Le modèle tourne via un <strong>DAG Airflow quotidien</strong> qui rafraîchit les recommandations à partir du dernier catalogue. Résultat : <strong>+25% de taux d\'ajout au panier</strong> par rapport à la solution précédente (Target2Sell).</p>',
             items: [
               { title: 'Python' },
@@ -461,6 +524,7 @@ export const translations = {
             id: 'similarity-nonfood',
             title: 'Similarité - Non Alimentaire',
             tagline: 'Embeddings · Catalogue Produit',
+            icon: 'tabler:device-laptop',
             content: '<p>Construction d\'un <strong>moteur de similarité pour les produits non alimentaires</strong> (électronique, maison, textile, etc.) où les attributs produit sont moins structurés et les descriptions plus pauvres que pour l\'alimentaire.</p><p>Utilisation d\'<strong>embeddings sentence-transformer</strong> pour capturer le sens sémantique des titres et descriptions, combinés à l\'encodage de features catégorielles. Une <strong>recherche FAISS approximate nearest neighbor</strong> permet la récupération en temps réel des top-N produits similaires. Déployé en <strong>Cloud Function</strong> avec BigQuery comme feature store.</p>',
             items: [
               { title: 'Sentence Transformers' },
@@ -475,6 +539,7 @@ export const translations = {
             id: 'crosssell-nonfood',
             title: 'Cross Sell - Non Alimentaire',
             tagline: 'Règles d\'Association · Historique de Ventes',
+            icon: 'tabler:arrows-exchange',
             content: '<p>Conception d\'un <strong>moteur de recommandation cross-sell</strong> pour les produits non alimentaires basé sur l\'analyse de l\'historique transactionnel. Le moteur identifie les produits fréquemment achetés ensemble pour suggérer des articles complémentaires au niveau de la page produit.</p><p>Implémentation de l\'<strong>algorithme Apriori</strong> sur des millions de transactions pour extraire des règles d\'association à haute confiance (support, confiance, lift). Les règles sont filtrées et classées par pertinence métier, rafraîchies chaque semaine via un <strong>pipeline Airflow</strong>. Contribution mesurable à l\'augmentation du panier moyen.</p>',
             items: [
               { title: 'Algorithme Apriori' },
@@ -489,6 +554,7 @@ export const translations = {
             id: 'crosssell-marketplace',
             title: 'Cross Sell - Non Alimentaire - Marketplace',
             tagline: 'Cold Start · Embeddings & LLM',
+            icon: 'tabler:building-store',
             content: '<p>Résolution du <strong>problème de cold start</strong> pour les produits marketplace sans aucun historique de ventes — rendant le filtrage collaboratif ou les règles d\'association classiques inefficaces.</p><p>Développement d\'une approche hybride combinant la <strong>similarité par embeddings produit</strong> (via sentence-transformers sur les descriptions) avec un <strong>mapping de catégories par LLM</strong> pour associer les nouveaux articles marketplace aux produits existants du catalogue Auchan avec des affinités cross-sell connues. Cela a permis des <strong>recommandations dès le jour 1</strong> pour les nouveaux vendeurs intégrant la marketplace.</p>',
             items: [
               { title: 'Embeddings' },
@@ -513,6 +579,7 @@ export const translations = {
             id: 'surface-optimization',
             title: 'Optimisation de la Surface Magasin',
             tagline: 'LightGBM · Optuna · Streamlit',
+            icon: 'tabler:ruler-measure',
             content: '<p>Conception d\'un <strong>modèle prédictif LightGBM</strong> pour optimiser l\'allocation de la surface de vente (m²) par catégorie de produits afin de <strong>maximiser le chiffre d\'affaires au mètre carré</strong>.</p><p>Le modèle a été entraîné sur les données de ventes historiques, d\'allocation de surface, de fréquentation et de saisonnalité de centaines d\'hypermarchés. L\'<strong>optimisation des hyperparamètres</strong> a été réalisée avec Optuna en optimisation bayésienne. La solution est délivrée via une <strong>application Streamlit dédiée</strong>, permettant aux directeurs de magasins et régionaux de simuler des scénarios de réallocation et de visualiser l\'impact sur le CA avant mise en œuvre.</p>',
             items: [
               { title: 'LightGBM' },
@@ -537,6 +604,7 @@ export const translations = {
             id: 'verbatim-analysis',
             title: 'Analyse automatisée de verbatims (France & Portugal)',
             tagline: 'NLP · Sentence Transformers · LLM',
+            icon: 'tabler:message-chatbot',
             content: '<p>Conception et déploiement d\'une <strong>chaîne d\'analyse de texte end-to-end</strong> pour l\'analyse automatisée des retours clients (verbatims) couvrant les marchés France et Portugal.</p><p>Le pipeline combine la classification binaire via des <strong>sentence transformers avec fine-tuning</strong>, la classification multi-classes sur 5 catégories métier, et l\'analyse de sentiment via des modèles LLM. Les résultats sont exposés via une <strong>interface conversationnelle LLM</strong> (propulsée par Gemini), permettant aux équipes métier d\'explorer les insights en langage naturel — ex. « De quoi se plaignent les clients dans les magasins de Lille ce mois-ci ? »</p>',
             items: [
               { title: 'Sentence Transformers' },
@@ -550,8 +618,7 @@ export const translations = {
           {
             id: 'label-extraction',
             title: 'Extraction d\'étiquettes produit par LLM',
-            tagline: 'OCR · LLM · Automatisation',
-            content: '<p>Développement d\'une <strong>solution basée sur les LLM</strong> pour extraire automatiquement les informations structurées des étiquettes poisson (via OCR à partir de photos prises en magasin), pré-remplir les formulaires réglementaires associés et proposer un <strong>top-10 de codes internes produits correspondants</strong> (CUG).</p><p>Le pipeline utilise l\'<strong>API Google Cloud Vision</strong> pour l\'OCR, suivi de Gemini pour l\'extraction d\'entités et la génération de sorties structurées. Réduction de plus de 80% du temps de saisie manuelle pour les équipes magasin et amélioration de la qualité des données réglementaires.</p>',
+            tagline: 'OCR · LLM · Automatisation',            icon: 'tabler:tag',            content: '<p>Développement d\'une <strong>solution basée sur les LLM</strong> pour extraire automatiquement les informations structurées des étiquettes poisson (via OCR à partir de photos prises en magasin), pré-remplir les formulaires réglementaires associés et proposer un <strong>top-10 de codes internes produits correspondants</strong> (CUG).</p><p>Le pipeline utilise l\'<strong>API Google Cloud Vision</strong> pour l\'OCR, suivi de Gemini pour l\'extraction d\'entités et la génération de sorties structurées. Réduction de plus de 80% du temps de saisie manuelle pour les équipes magasin et amélioration de la qualité des données réglementaires.</p>',
             items: [
               { title: 'LLM (Gemini)' },
               { title: 'OCR (Cloud Vision)' },
@@ -565,6 +632,7 @@ export const translations = {
             id: 'crosssell-marketplace-genai',
             title: 'Cross Sell - Marketplace (Cold Start via LLM)',
             tagline: 'Embeddings · LLM · Cold Start',
+            icon: 'tabler:sparkles',
             content: '<p>Ce projet fait également partie de la catégorie <a href="/{lang}/projects/recommendation-engines#crosssell-marketplace" class="text-blue-600 dark:text-blue-400 underline hover:text-blue-800">Moteurs de Recommandation</a>. Il utilise le <strong>mapping de catégories par LLM</strong> et la similarité par embeddings pour résoudre le problème de cold start des produits marketplace sans historique d\'achat.</p><p>Le volet GenAI exploite spécifiquement <strong>Gemini</strong> pour comprendre les descriptions produit et les associer sémantiquement à la taxonomie produit Auchan existante, permettant des recommandations cross-sell intelligentes dès le premier jour.</p>',
             items: [
               { title: 'LLM (Gemini)' },

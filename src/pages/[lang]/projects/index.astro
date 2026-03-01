@@ -1,0 +1,62 @@
+---
+import type { GetStaticPaths } from 'astro';
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import { getLangFromUrl } from '~/i18n/utils';
+import { useTranslations } from '~/i18n/translations';
+
+export const getStaticPaths = (() => {
+  return [{ params: { lang: 'en' } }, { params: { lang: 'fr' } }];
+}) satisfies GetStaticPaths;
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const metadata = {
+  title: t.projects.hero.title,
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero -->
+  <Hero tagline={t.projects.hero.tagline}>
+    <Fragment slot="title">
+      {t.projects.hero.title}
+    </Fragment>
+    <Fragment slot="subtitle">
+      {t.projects.hero.subtitle}
+    </Fragment>
+  </Hero>
+
+  <!-- Project Categories — same look as home page Key Projects -->
+  <Features2
+    tagline={t.projects.categories.tagline}
+    title={t.projects.categories.title}
+    subtitle={t.projects.categories.subtitle}
+    items={[
+      {
+        title: t.projects.categories.items[0].title,
+        description: t.projects.categories.items[0].description,
+        icon: 'tabler:shopping-cart',
+        callToAction: { text: t.projects.categories.items[0].cta, href: `/${lang}/projects/recommendation-engines` },
+      },
+      {
+        title: t.projects.categories.items[1].title,
+        description: t.projects.categories.items[1].description,
+        icon: 'tabler:chart-line',
+        callToAction: { text: t.projects.categories.items[1].cta, href: `/${lang}/projects/optimization-techniques` },
+      },
+      {
+        title: t.projects.categories.items[2].title,
+        description: t.projects.categories.items[2].description,
+        icon: 'tabler:brain',
+        callToAction: { text: t.projects.categories.items[2].cta, href: `/${lang}/projects/gen-ai-applications` },
+      },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Features2>
+</Layout>

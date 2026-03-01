@@ -27,56 +27,126 @@ const crossRefLabel = lang === 'en' ? 'Also in: Recommendation Engines' : 'Égal
     <Fragment slot="subtitle">{page.hero.subtitle}</Fragment>
   </Hero>
 
-  <!-- Project articles -->
-  <section class="relative -mt-4 mb-16">
+  <!-- Quick nav with icons -->
+  <section class="relative -mt-4 mb-8">
     <div class="max-w-4xl mx-auto px-4 sm:px-6">
-      {page.items.map((item: any, index: number) => {
-        // Replace {lang} placeholder in content with actual lang
+      <nav class="flex flex-wrap gap-2 justify-center">
+        {page.items.map((item: any) => (
+          <a
+            href={`#${item.id}`}
+            class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 hover:bg-emerald-100 dark:hover:bg-emerald-900/40 transition-colors"
+            data-accordion-trigger={item.id}
+          >
+            <Icon name={item.icon} class="w-4 h-4" />
+            {item.title}
+          </a>
+        ))}
+      </nav>
+    </div>
+  </section>
+
+  <!-- Accordion project articles -->
+  <section class="mb-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      {page.items.map((item: any) => {
         const content = (item.content as string).replace(/\{lang\}/g, lang);
         return (
-          <article id={item.id} class="scroll-mt-24 mb-12 last:mb-0">
-            <div class="relative rounded-2xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-800 p-6 sm:p-8 shadow-sm hover:shadow-md transition-shadow">
-              {/* Cross-reference badge */}
-              {item.crossRef && (
-                <div class="mb-3">
-                  <a
-                    href={`/${lang}/projects/recommendation-engines#crosssell-marketplace`}
-                    class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800 hover:bg-purple-100 dark:hover:bg-purple-900/40 transition-colors"
-                  >
-                    <Icon name="tabler:link" class="w-3.5 h-3.5" />
-                    {crossRefLabel}
-                  </a>
+          <article id={item.id} class="scroll-mt-24 mb-4">
+            <div class="rounded-2xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-800 shadow-sm hover:shadow-md transition-shadow overflow-hidden">
+              {/* Accordion header */}
+              <button
+                type="button"
+                class="accordion-toggle w-full flex items-center gap-4 p-6 sm:p-8 text-left cursor-pointer"
+                data-target={item.id}
+                aria-expanded="false"
+              >
+                <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-emerald-50 dark:bg-emerald-900/20 flex items-center justify-center">
+                  <Icon name={item.icon} class="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
                 </div>
-              )}
+                <div class="flex-1 min-w-0">
+                  <p class="text-sm font-semibold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider mb-0.5">{item.tagline}</p>
+                  <h2 class="text-xl font-bold text-gray-900 dark:text-white truncate">{item.title}</h2>
+                </div>
+                <Icon name="tabler:chevron-down" class="accordion-chevron w-5 h-5 text-gray-400 dark:text-gray-500 transition-transform duration-300 flex-shrink-0" />
+              </button>
 
-              {/* Tagline */}
-              <p class="text-sm font-semibold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider mb-2">{item.tagline}</p>
-
-              {/* Title */}
-              <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">{item.title}</h2>
-
-              {/* Content */}
-              <div class="prose prose-lg dark:prose-invert max-w-none mb-6" set:html={content} />
-
-              {/* Tech tags */}
-              <div class="flex flex-wrap gap-2">
-                {item.items.map((tech: any) => (
-                  <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300">
-                    {tech.title}
-                  </span>
-                ))}
+              {/* Accordion content */}
+              <div class="accordion-content hidden" data-panel={item.id}>
+                <div class="px-6 sm:px-8 pb-6 sm:pb-8 border-t border-gray-100 dark:border-gray-700 pt-6">
+                  {/* Cross-reference badge */}
+                  {item.crossRef && (
+                    <div class="mb-4">
+                      <a
+                        href={`/${lang}/projects/recommendation-engines#crosssell-marketplace`}
+                        class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800 hover:bg-purple-100 dark:hover:bg-purple-900/40 transition-colors"
+                      >
+                        <Icon name="tabler:link" class="w-3.5 h-3.5" />
+                        {crossRefLabel}
+                      </a>
+                    </div>
+                  )}
+                  <div class="prose prose-lg dark:prose-invert max-w-none mb-6" set:html={content} />
+                  <div class="flex flex-wrap gap-2">
+                    {item.items.map((tech: any) => (
+                      <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300">
+                        {tech.title}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
-
-            {/* Connector line between articles */}
-            {index < page.items.length - 1 && (
-              <div class="flex justify-center py-4">
-                <div class="w-px h-8 bg-gray-200 dark:bg-gray-700"></div>
-              </div>
-            )}
           </article>
         );
       })}
     </div>
   </section>
 </Layout>
+
+<script>
+  function initAccordion() {
+    document.querySelectorAll('.accordion-toggle').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const targetId = (btn as HTMLElement).dataset.target;
+        const panel = document.querySelector(`[data-panel="${targetId}"]`);
+        const chevron = btn.querySelector('.accordion-chevron');
+        const isOpen = !panel?.classList.contains('hidden');
+
+        document.querySelectorAll('.accordion-content').forEach((p) => p.classList.add('hidden'));
+        document.querySelectorAll('.accordion-toggle').forEach((b) => {
+          b.setAttribute('aria-expanded', 'false');
+          b.querySelector('.accordion-chevron')?.classList.remove('rotate-180');
+        });
+
+        if (!isOpen && panel) {
+          panel.classList.remove('hidden');
+          btn.setAttribute('aria-expanded', 'true');
+          chevron?.classList.add('rotate-180');
+        }
+      });
+    });
+
+    document.querySelectorAll('[data-accordion-trigger]').forEach((link) => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = (link as HTMLElement).dataset.accordionTrigger;
+        const btn = document.querySelector(`.accordion-toggle[data-target="${targetId}"]`) as HTMLElement;
+        if (btn) {
+          btn.click();
+          setTimeout(() => {
+            document.getElementById(targetId!)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 100);
+        }
+      });
+    });
+
+    const hash = window.location.hash.slice(1);
+    if (hash) {
+      const btn = document.querySelector(`.accordion-toggle[data-target="${hash}"]`) as HTMLElement;
+      if (btn) btn.click();
+    }
+  }
+
+  initAccordion();
+  document.addEventListener('astro:after-swap', initAccordion);
+</script>
