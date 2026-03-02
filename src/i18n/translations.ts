@@ -47,7 +47,56 @@ export const translations = {
       },
       summary: {
         title: 'Professional Summary',
-        content: '<p>I am a Data Scientist within the Data Department at Auchan Retail France, delivering cross-functional Data & AI projects across multiple business units. With a dual business and technical background, I build and deploy end-to-end data pipelines combining data science, data engineering, and project leadership to turn data into actionable insights and performance drivers.</p><p>I work closely with cross-functional stakeholders to translate business needs into practical, scalable data solutions — from initial concept through production deployment and adoption. My experience spans recommendation systems, NLP, predictive modeling, LLM-based applications, and data visualization across e-commerce, marketing, and retail operations.</p><p>Prior to my current role, I held positions as Team Leader / Business Analyst at SLK Software Services (India), Consultant at Tata Consulting Engineers, Project Manager at Quadrate Multilingual, and Consultant at Atos — working across BFSI, automotive, and industrial sectors in India, France, and the UK.</p>',
+        content: '<p>I am a Data Scientist within the Data Department at Auchan Retail France, delivering cross-functional Data & AI projects across multiple business units. With a dual business and technical background, I build and deploy end-to-end data pipelines combining data science, data engineering, and project leadership to turn data into actionable insights and performance drivers.</p><p>I work closely with cross-functional stakeholders to translate business needs into practical, scalable data solutions — from initial concept through production deployment and adoption. My experience spans recommendation systems, NLP, predictive modeling, LLM-based applications, and data visualization across e-commerce, marketing, and retail operations.</p><p>Before joining Auchan Retail France, I worked as Consultant - Business Analyst at SLK Software Services Pvt. Ltd., Consultant at Tata Consulting Engineers, Project Manager at Quadrate Multilingual Consultant Pvt. Ltd., and Consultant - Business Analyst at Atos in India.</p>',
+      },
+      experience: {
+        tagline: 'Career Journey',
+        title: 'Professional Experience',
+        subtitle: 'Companies and roles across my international career.',
+        items: [
+          {
+            title: 'Auchan Retail France',
+            description: 'Data Scientist · Aug 2021 – Present · Lille, France\nDriving end-to-end Data & AI initiatives across e-commerce, retail operations, and business analytics.',
+            icon: 'tabler:building-store',
+          },
+          {
+            title: 'SLK Software Services',
+            description: 'Consultant - Business Analyst · Nov 2016 – Sep 2020 · Bangalore, India\nLed analytics and delivery streams for BFSI and enterprise clients.',
+            icon: 'tabler:users-group',
+          },
+          {
+            title: 'Tata Consulting Engineers Ltd.',
+            description: 'Consultant - Business Analyst · Sep 2014 – Nov 2016 · Bangalore, India\nDelivered consulting assignments across engineering and industrial business domains.',
+            icon: 'tabler:briefcase',
+          },
+          {
+            title: 'Quadrate Multilingual',
+            description: 'Project Manager · Jan 2012 – Sep 2014 · Chennai, India\nManaged multilingual project execution, operations, and stakeholder coordination.',
+            icon: 'tabler:message-language',
+          },
+          {
+            title: 'Atos',
+            description: 'Consultant - Business Analyst · Jun 2010 – Dec 2011 · Chennai, India\nContributed to transformation projects spanning automotive and enterprise contexts.',
+            icon: 'tabler:world',
+          },
+        ],
+      },
+      education: {
+        tagline: 'Academics',
+        title: 'Educational Qualifications',
+        subtitle: 'Degrees and academic background.',
+        items: [
+          {
+            title: 'MSc. in Big Data Analytics for Business',
+            description: 'IESEG School of Management · 09/2020 – 02/2022 · Lille, France',
+            icon: 'tabler:school',
+          },
+          {
+            title: '<strong>BSc. in Mathematics, Physics, Environmental Science</strong><br /><strong>B.A in French, English, German</strong>',
+            description: 'Sri Aurobindo International Centre of Education · Dec 2006 – Nov 2009 · Pondicherry, India',
+            icon: 'tabler:book',
+          },
+        ],
       },
       skills: {
         tagline: 'Expertise',
@@ -65,7 +114,7 @@ export const translations = {
       stats: {
         items: [
           { title: 'Years of Experience', amount: '15+' },
-          { title: 'Professional Certifications', amount: '6' },
+          { title: 'Certifications', amount: '6' },
           { title: 'Languages Spoken', amount: '3' },
           { title: 'Business Domains', amount: '5+' },
         ],
@@ -389,7 +438,56 @@ export const translations = {
       },
       summary: {
         title: 'Résumé professionnel',
-        content: '<p>Je suis Data Scientist au sein de la Direction Data d\'Auchan Retail France, intervenant de manière transverse auprès des différentes directions et équipes sur des projets Data et IA. Fort d\'une double culture business et technique, je conçois et déploie des pipelines end-to-end en combinant data science, data engineering et pilotage de projets pour transformer les données en leviers de décision et de performance.</p><p>J\'interviens en étroite collaboration avec les équipes métier afin de traduire des problématiques business en solutions data concrètes et actionnables, de leur conception à leur mise en production et à leur adoption. Mon expérience couvre les systèmes de recommandation, le NLP, la modélisation prédictive, les applications basées sur les LLM et la data visualisation — dans les domaines du e-commerce, du marketing et des opérations retail.</p><p>Avant mon poste actuel, j\'ai occupé des postes de Chef d\'équipe / Business Analyst chez SLK Software Services (Inde), Consultant chez Tata Consulting Engineers, Chef de projet chez Quadrate Multilingual, et Consultant chez Atos — travaillant dans les secteurs BFSI, automobile et industriel en Inde, en France et au Royaume-Uni.</p>',
+        content: '<p>Je suis Data Scientist au sein de la Direction Data d\'Auchan Retail France, intervenant de manière transverse auprès des différentes directions et équipes sur des projets Data et IA. Fort d\'une double culture business et technique, je conçois et déploie des pipelines end-to-end en combinant data science, data engineering et pilotage de projets pour transformer les données en leviers de décision et de performance.</p><p>J\'interviens en étroite collaboration avec les équipes métier afin de traduire des problématiques business en solutions data concrètes et actionnables, de leur conception à leur mise en production et à leur adoption. Mon expérience couvre les systèmes de recommandation, le NLP, la modélisation prédictive, les applications basées sur les LLM et la data visualisation — dans les domaines du e-commerce, du marketing et des opérations retail.</p><p>Avant de rejoindre Auchan Retail France, j\'ai travaillé comme Consultant - Business Analyst chez SLK Software Services Pvt. Ltd., Consultant chez Tata Consulting Engineers, Chef de projet chez Quadrate Multilingual Consultant Pvt. Ltd., et Consultant - Business Analyst chez Atos en Inde.</p>',
+      },
+      experience: {
+        tagline: 'Parcours',
+        title: 'Expérience professionnelle',
+        subtitle: 'Entreprises et rôles tout au long de ma carrière internationale.',
+        items: [
+          {
+            title: 'Auchan Retail France',
+            description: 'Data Scientist · Août 2021 – Présent · Lille, France\nPilotage de projets Data & IA de bout en bout sur le e-commerce, les opérations retail et l\'analyse business.',
+            icon: 'tabler:building-store',
+          },
+          {
+            title: 'SLK Software Services',
+            description: 'Consultant - Business Analyst · Nov 2016 – Sep 2020 · Bangalore, Inde\nPilotage de streams analytiques et delivery pour des clients BFSI et grands comptes.',
+            icon: 'tabler:users-group',
+          },
+          {
+            title: 'Tata Consulting Engineers Ltd.',
+            description: 'Consultant - Business Analyst · Sep 2014 – Nov 2016 · Bangalore, Inde\nRéalisation de missions de conseil sur des problématiques industrielles et d\'ingénierie.',
+            icon: 'tabler:briefcase',
+          },
+          {
+            title: 'Quadrate Multilingual',
+            description: 'Chef de projet · Jan 2012 – Sep 2014 · Chennai, Inde\nGestion de projets multilingues, coordination opérationnelle et suivi des parties prenantes.',
+            icon: 'tabler:message-language',
+          },
+          {
+            title: 'Atos',
+            description: 'Consultant - Business Analyst · Juin 2010 – Déc 2011 · Chennai, Inde\nContribution à des projets de transformation dans des contextes automobile et entreprise.',
+            icon: 'tabler:world',
+          },
+        ],
+      },
+      education: {
+        tagline: 'Parcours académique',
+        title: 'Formation',
+        subtitle: 'Diplômes et parcours académique.',
+        items: [
+          {
+            title: 'MSc. in Big Data Analytics for Business',
+            description: 'IESEG School of Management · 09/2020 – 02/2022 · Lille, France',
+            icon: 'tabler:school',
+          },
+          {
+            title: '<strong>BSc. in Mathematics, Physics, Environmental Science</strong><br /><strong>B.A in French, English, German</strong>',
+            description: 'Sri Aurobindo International Centre of Education · Déc 2006 – Nov 2009 · Pondicherry, Inde',
+            icon: 'tabler:book',
+          },
+        ],
       },
       skills: {
         tagline: 'Expertise',

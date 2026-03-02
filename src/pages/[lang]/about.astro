@@ -5,6 +5,8 @@ import Hero from '~/components/widgets/Hero.astro';
 import Content from '~/components/widgets/Content.astro';
 import Features2 from '~/components/widgets/Features2.astro';
 import Stats from '~/components/widgets/Stats.astro';
+import Timeline from '~/components/ui/Timeline.astro';
+import { Icon } from 'astro-icon/components';
 import { getLangFromUrl } from '~/i18n/utils';
 import { useTranslations } from '~/i18n/translations';
 
@@ -18,6 +20,65 @@ const t = useTranslations(lang);
 const metadata = {
   title: t.about.hero.title,
 };
+
+const aboutQuickNav = [
+  {
+    id: 'professional-summary',
+    title: t.about.summary.title,
+    icon: 'tabler:user-circle',
+  },
+  {
+    id: 'professional-experience',
+    title: t.about.experience.title,
+    icon: 'tabler:briefcase',
+  },
+  {
+    id: 'education-qualifications',
+    title: t.about.education.title,
+    icon: 'tabler:school',
+  },
+  {
+    id: 'skills-technologies',
+    title: t.about.skills.title,
+    icon: 'tabler:cpu',
+  },
+  {
+    id: 'in-numbers',
+    title: lang === 'en' ? 'In numbers' : 'En chiffres',
+    icon: 'tabler:chart-histogram',
+  },
+];
+
+const expItems = [...t.about.experience.items] as Array<{
+  title: string;
+  description: string;
+  icon: string;
+}>;
+
+function parseExperience(description: string) {
+  const lines = description.split('\n');
+  const firstLine = (lines[0] || '').trim();
+  const detailsLine = (lines[1] || '').trim();
+  const [role, period, location] = firstLine.split(' · ').map((value) => value.trim());
+  return {
+    role: role || '',
+    period: period || '',
+    location: location || '',
+    detailsLine,
+  };
+}
+
+function getCompanyWebsite(company: string) {
+  const websites: Record<string, string> = {
+    'Auchan Retail France': 'https://www.auchan-retail.com/fr/',
+    'SLK Software Services': 'https://slksoftware.com/',
+    'Tata Consulting Engineers Ltd.': 'https://www.tataconsultingengineers.com/',
+    'Quadrate Multilingual': 'https://quadrate.co.in/',
+    Atos: 'https://atos.net/en/worldwide-locations#india',
+  };
+
+  return websites[company] || '#';
+}
 ---
 
 <Layout metadata={metadata}>
@@ -33,32 +94,138 @@ const metadata = {
     </Fragment>
   </Hero>
 
+  <!-- Quick nav with icons -->
+  <section class="relative -mt-4 mb-8">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      <nav class="flex flex-wrap gap-2 justify-center">
+        {aboutQuickNav.map((item) => (
+          <a
+            href={`#${item.id}`}
+            class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800 hover:bg-blue-100 dark:hover:bg-blue-900/40 transition-colors"
+          >
+            <Icon name={item.icon} class="w-4 h-4" />
+            {item.title}
+          </a>
+        ))}
+      </nav>
+    </div>
+  </section>
+
   <!-- Professional Summary -->
-  <Content
-    title={t.about.summary.title}
-    content={t.about.summary.content}
-    image={{
-      src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-      alt: lang === 'en' ? 'Developer workspace' : 'Espace de travail développeur',
-    }}
-  >
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
-  </Content>
+  <section id="professional-summary" class="scroll-mt-24">
+    <Content
+      title={t.about.summary.title}
+      content={t.about.summary.content}
+      image={{
+        src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+        alt: lang === 'en' ? 'Developer workspace' : 'Espace de travail développeur',
+      }}
+    >
+      <Fragment slot="bg">
+        <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+      </Fragment>
+    </Content>
+  </section>
+
+  <!-- Professional Experience -->
+  <section id="professional-experience" class="relative py-12 md:py-16 scroll-mt-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="max-w-3xl mb-8 md:mb-12 text-center md:mx-auto">
+        <p class="font-semibold text-sm md:text-base tracking-[0.12em] uppercase text-blue-700 dark:text-blue-300">{t.about.experience.tagline}</p>
+        <h2 class="mt-2 text-3xl md:text-4xl font-extrabold font-heading leading-tight tracking-tight text-gray-900 dark:text-white">{t.about.experience.title}</h2>
+        <p class="mt-4 text-lg md:text-xl text-gray-700 dark:text-slate-300">{t.about.experience.subtitle}</p>
+      </div>
+
+      <div class="max-w-4xl mx-auto rounded-2xl border border-blue-200/70 dark:border-blue-800/60 bg-white/80 dark:bg-slate-900/30 p-6 md:p-8 shadow-sm">
+        <div class="relative">
+          {expItems.map((item, index) => {
+            const parsed = parseExperience(item.description);
+            const isLast = index === expItems.length - 1;
+            return (
+              <div class="relative flex gap-6 pb-12 last:pb-0 group">
+                <div class="flex flex-col items-center">
+                  <div class="relative z-10 flex items-center justify-center w-12 h-12 rounded-full border-2 border-blue-300 dark:border-blue-700 bg-blue-50 dark:bg-blue-900/30 shadow-sm group-hover:shadow-md group-hover:scale-105 transition-all duration-300">
+                    <Icon name={item.icon} class="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                  </div>
+                  {!isLast && <div class="w-0.5 flex-1 mt-2 bg-blue-200 dark:bg-blue-800" />}
+                </div>
+
+                <div class="flex-1 -mt-1 pt-1">
+                  <div class="flex flex-wrap items-center gap-3 mb-2">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300">
+                      {parsed.period}
+                    </span>
+                    <span class="text-sm font-semibold text-blue-700 dark:text-blue-300">{parsed.location}</span>
+                  </div>
+
+                  <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-1 leading-snug">{parsed.role}</h3>
+                  <p class="text-base text-muted mb-2 inline-flex items-center gap-2">
+                    {item.title}
+                    <a
+                      href={getCompanyWebsite(item.title)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={lang === 'en' ? `Visit ${item.title}` : `Visiter ${item.title}`}
+                      class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
+                    >
+                      <Icon name="tabler:external-link" class="w-4 h-4" />
+                    </a>
+                  </p>
+
+                  {parsed.detailsLine && (
+                    <p class="text-sm text-muted leading-relaxed">{parsed.detailsLine}</p>
+                  )}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6" aria-hidden="true">
+    <div class="border-t border-gray-200/70 dark:border-slate-800/70"></div>
+  </div>
+
+  <!-- Education -->
+  <section id="education-qualifications" class="relative py-12 md:py-16 scroll-mt-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="max-w-3xl mb-8 md:mb-12 text-center md:mx-auto">
+        <p class="font-bold text-base tracking-wide uppercase text-secondary dark:text-blue-200">{t.about.education.tagline}</p>
+        <h2 class="text-3xl md:text-4xl font-bold font-heading leading-tighter tracking-tighter text-heading">{t.about.education.title}</h2>
+        <p class="mt-4 text-xl text-muted">{t.about.education.subtitle}</p>
+      </div>
+
+      <div class="max-w-4xl mx-auto rounded-2xl border border-gray-200/80 dark:border-slate-700/60 bg-gray-50/60 dark:bg-slate-900/20 p-6 md:p-8 shadow-sm">
+        <Timeline
+          items={[...t.about.education.items]}
+          classes={{
+            container: 'space-y-0',
+            panel: 'items-start',
+            icon: 'text-slate-600 dark:text-slate-300 border-slate-300 dark:border-slate-600',
+          }}
+        />
+      </div>
+    </div>
+  </section>
 
   <!-- Skills & Technologies -->
-  <Features2
-    tagline={t.about.skills.tagline}
-    title={t.about.skills.title}
-    subtitle={t.about.skills.subtitle}
-    items={[...t.about.skills.items]}
-    columns={3}
-  />
+  <section id="skills-technologies" class="scroll-mt-24">
+    <Features2
+      tagline={t.about.skills.tagline}
+      title={t.about.skills.title}
+      subtitle={t.about.skills.subtitle}
+      items={[...t.about.skills.items]}
+      columns={3}
+    />
+  </section>
 
   <!-- Stats -->
-  <Stats
-    title={lang === 'en' ? 'In numbers' : 'En chiffres'}
-    stats={[...t.about.stats.items]}
-  />
+  <section id="in-numbers" class="scroll-mt-24 pb-16 md:pb-24">
+    <Stats
+      title={lang === 'en' ? 'In numbers' : 'En chiffres'}
+      stats={[...t.about.stats.items]}
+    />
+  </section>
 </Layout>
