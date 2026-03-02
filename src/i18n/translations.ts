@@ -47,7 +47,7 @@ export const translations = {
       },
       summary: {
         title: 'Professional Summary',
-        content: '<p>I am a Data Scientist within the Data Department at Auchan Retail France, delivering cross-functional Data & AI projects across multiple business units. With a dual business and technical background, I build and deploy end-to-end data pipelines combining data science, data engineering, and project leadership to turn data into actionable insights and performance drivers.</p><p>I work closely with cross-functional stakeholders to translate business needs into practical, scalable data solutions — from initial concept through production deployment and adoption. My experience spans recommendation systems, NLP, predictive modeling, LLM-based applications, and data visualization across e-commerce, marketing, and retail operations.</p><p>Before joining Auchan Retail France, I worked as Consultant - Business Analyst at SLK Software Services Pvt. Ltd., Consultant at Tata Consulting Engineers, Project Manager at Quadrate Multilingual Consultant Pvt. Ltd., and Consultant - Business Analyst at Atos in India.</p>',
+        content: '<p>I am a Data Scientist within the Data Department at Auchan Retail France, delivering cross-functional Data & AI projects across multiple business units. With a dual business and technical background, I build and deploy end-to-end data pipelines combining data science, data engineering, and project leadership to turn data into actionable insights and performance drivers.</p><p>I work closely with cross-functional stakeholders to translate business needs into practical, scalable data solutions — from initial concept through production deployment and adoption. My experience spans recommendation systems, NLP, predictive modeling, LLM-based applications, and data visualization across e-commerce, marketing, and retail operations.</p>',
       },
       experience: {
         tagline: 'Career Journey',
@@ -117,6 +117,16 @@ export const translations = {
           { title: 'Certifications', amount: '6' },
           { title: 'Languages Spoken', amount: '3' },
           { title: 'Business Domains', amount: '5+' },
+        ],
+      },
+      interests: {
+        title: 'Interests',
+        subtitle: 'Hobbies',
+        items: [
+          { title: 'Home Automation', icon: 'tabler:smart-home' },
+          { title: 'Travelling', icon: 'tabler:plane' },
+          { title: 'Ideation & Problem Solving', icon: 'tabler:bulb' },
+          { title: 'Nature Lover', icon: 'tabler:leaf' },
         ],
       },
     },
@@ -438,7 +448,7 @@ export const translations = {
       },
       summary: {
         title: 'Résumé professionnel',
-        content: '<p>Je suis Data Scientist au sein de la Direction Data d\'Auchan Retail France, intervenant de manière transverse auprès des différentes directions et équipes sur des projets Data et IA. Fort d\'une double culture business et technique, je conçois et déploie des pipelines end-to-end en combinant data science, data engineering et pilotage de projets pour transformer les données en leviers de décision et de performance.</p><p>J\'interviens en étroite collaboration avec les équipes métier afin de traduire des problématiques business en solutions data concrètes et actionnables, de leur conception à leur mise en production et à leur adoption. Mon expérience couvre les systèmes de recommandation, le NLP, la modélisation prédictive, les applications basées sur les LLM et la data visualisation — dans les domaines du e-commerce, du marketing et des opérations retail.</p><p>Avant de rejoindre Auchan Retail France, j\'ai travaillé comme Consultant - Business Analyst chez SLK Software Services Pvt. Ltd., Consultant chez Tata Consulting Engineers, Chef de projet chez Quadrate Multilingual Consultant Pvt. Ltd., et Consultant - Business Analyst chez Atos en Inde.</p>',
+        content: '<p>Je suis Data Scientist au sein de la Direction Data d\'Auchan Retail France, intervenant de manière transverse auprès des différentes directions et équipes sur des projets Data et IA. Fort d\'une double culture business et technique, je conçois et déploie des pipelines end-to-end en combinant data science, data engineering et pilotage de projets pour transformer les données en leviers de décision et de performance.</p><p>J\'interviens en étroite collaboration avec les équipes métier afin de traduire des problématiques business en solutions data concrètes et actionnables, de leur conception à leur mise en production et à leur adoption. Mon expérience couvre les systèmes de recommandation, le NLP, la modélisation prédictive, les applications basées sur les LLM et la data visualisation — dans les domaines du e-commerce, du marketing et des opérations retail.</p>',
       },
       experience: {
         tagline: 'Parcours',
@@ -505,9 +515,19 @@ export const translations = {
       stats: {
         items: [
           { title: 'Années d\'expérience', amount: '15+' },
-          { title: 'Certifications professionnelles', amount: '6' },
+          { title: 'Certifications', amount: '6' },
           { title: 'Langues parlées', amount: '3' },
           { title: 'Domaines métier', amount: '5+' },
+        ],
+      },
+      interests: {
+        title: 'Intérêts',
+        subtitle: 'Loisirs',
+        items: [
+          { title: 'Domotique', icon: 'tabler:smart-home' },
+          { title: 'Voyages', icon: 'tabler:plane' },
+          { title: 'Idéation & Résolution de problèmes', icon: 'tabler:bulb' },
+          { title: 'Amoureux de la nature', icon: 'tabler:leaf' },
         ],
       },
     },

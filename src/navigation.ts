@@ -2,6 +2,10 @@ const navTranslations = {
   en: {
     home: 'Home',
     about: 'About Me',
+    professionalSummary: 'Professional Summary',
+    professionalExperience: 'Professional Experience',
+    educationQualifications: 'Educational Qualifications',
+    skillsTechnologies: 'Skills & Technologies',
     certifications: 'Certifications',
     projects: 'Projects',
     recoEngines: 'Recommendation Engines',
@@ -12,6 +16,10 @@ const navTranslations = {
   fr: {
     home: 'Accueil',
     about: 'À propos',
+    professionalSummary: 'Résumé professionnel',
+    professionalExperience: 'Expérience professionnelle',
+    educationQualifications: 'Formation',
+    skillsTechnologies: 'Compétences & Technologies',
     certifications: 'Certifications',
     projects: 'Projets',
     recoEngines: 'Moteurs de Recommandation',
@@ -47,6 +55,15 @@ export function getFooterData(lang: 'en' | 'fr' = 'en') {
   const t = navTranslations[lang];
   return {
     links: [
+      {
+        title: t.about,
+        links: [
+          { text: t.professionalSummary, href: `/${lang}/about#professional-summary` },
+          { text: t.professionalExperience, href: `/${lang}/about#professional-experience` },
+          { text: t.educationQualifications, href: `/${lang}/about#education-qualifications` },
+          { text: t.skillsTechnologies, href: `/${lang}/about#skills-technologies` },
+        ],
+      },
       {
         title: t.projects,
         links: [

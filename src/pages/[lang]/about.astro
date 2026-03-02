@@ -47,6 +47,11 @@ const aboutQuickNav = [
     title: lang === 'en' ? 'In numbers' : 'En chiffres',
     icon: 'tabler:chart-histogram',
   },
+  {
+    id: 'interests',
+    title: t.about.interests.title,
+    icon: 'tabler:heart',
+  },
 ];
 
 const expItems = [...t.about.experience.items] as Array<{
@@ -227,5 +232,26 @@ function getCompanyWebsite(company: string) {
       title={lang === 'en' ? 'In numbers' : 'En chiffres'}
       stats={[...t.about.stats.items]}
     />
+  </section>
+
+  <!-- Interests -->
+  <section id="interests" class="relative pb-16 md:pb-24 scroll-mt-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="max-w-3xl mb-8 md:mb-12 text-center md:mx-auto">
+        <p class="font-bold text-base tracking-wide uppercase text-secondary dark:text-blue-200">{t.about.interests.subtitle}</p>
+        <h2 class="text-3xl md:text-4xl font-bold font-heading leading-tighter tracking-tighter text-heading">{t.about.interests.title}</h2>
+      </div>
+
+      <div class="max-w-5xl mx-auto grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+        {t.about.interests.items.map((item) => (
+          <div class="rounded-2xl border border-gray-200/80 dark:border-slate-700/60 bg-white/80 dark:bg-slate-900/30 p-5 md:p-6 shadow-sm text-center">
+            <div class="mx-auto mb-3 flex items-center justify-center w-11 h-11 rounded-full bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800">
+              <Icon name={item.icon} class="w-5 h-5 text-blue-600 dark:text-blue-400" />
+            </div>
+            <p class="font-semibold text-gray-900 dark:text-white leading-snug">{item.title}</p>
+          </div>
+        ))}
+      </div>
+    </div>
   </section>
 </Layout>
