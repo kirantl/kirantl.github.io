@@ -227,7 +227,171 @@ export const translations = {
             title: 'Similarity - Food Products',
             tagline: 'NLP · Product Attributes',
             icon: 'tabler:salad',
-            content: '<p>Developed a <strong>content-based recommendation engine</strong> for food products on Auchan.fr. The engine leverages NLP techniques applied to product attributes (name, category, description, nutritional data) to compute similarity scores between items.</p><p>Product embeddings are generated using <strong>TF-IDF vectorization</strong> combined with cosine similarity. The model runs on a <strong>daily Airflow DAG</strong> that refreshes recommendations based on the latest product catalog. Achieved <strong>+25% add-to-cart rate</strong> compared to the previous external solution (Target2Sell).</p>',
+            content: `<div class="not-prose mb-4">
+  <h3 class="text-xl font-bold text-blue-700 dark:text-blue-400 border-l-4 border-blue-600 dark:border-blue-500 pl-3 mb-0.5">Replacing a Black-Box Recommender</h3>
+  <p class="text-xs font-medium text-gray-500 dark:text-gray-400 pl-4 uppercase tracking-wider">Designing the &ldquo;Similarity – Food&rdquo; Engine at Auchan</p>
+</div>
+
+<p>As part of Auchan&rsquo;s strategic effort to <strong>internalize advanced analytics capabilities</strong>, I led the design and end-to-end implementation of a product substitution engine for food e-commerce.</p>
+<p>The objective was simple but strategically critical: when a product is <strong>out of stock</strong> on the e-commerce platform, propose the most relevant substitutes in order to preserve revenue and maintain a seamless customer experience.</p>
+<p>It was to replace a costly external black-box solution <span class="text-gray-500 dark:text-gray-400">(Target2Sell / Mirakl)</span> with an internally controlled, explainable, and scalable system &mdash; powered entirely by Auchan&rsquo;s own product data.</p>
+
+<div class="not-prose my-6 rounded-xl bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 border border-green-200 dark:border-green-800 p-5">
+  <div class="flex items-center gap-3">
+    <span class="flex-shrink-0 w-10 h-10 rounded-full bg-green-100 dark:bg-green-900/40 flex items-center justify-center text-lg">📈</span>
+    <div>
+      <p class="text-xs font-semibold text-green-700 dark:text-green-400 uppercase tracking-wider mb-0.5">The Outcome</p>
+      <p class="text-lg font-bold text-green-800 dark:text-green-300">+25% add-to-cart rate <span class="text-sm font-normal text-green-600 dark:text-green-400">vs. previous external solution</span></p>
+    </div>
+  </div>
+</div>
+
+<div class="not-prose mt-8 mb-4">
+  <h3 class="text-lg font-bold text-blue-700 dark:text-blue-400 border-l-4 border-blue-500 pl-3">Framing the Problem: Substitution Is Not Just Matching</h3>
+</div>
+
+<p>In grocery e-commerce, stockouts are inevitable. The real question is not <em>whether</em> substitution should happen &mdash; but <strong>how intelligently</strong> it should happen.</p>
+<p>When a product becomes unavailable, customers may abandon their cart, leave the platform, choose a poor substitute, or lose trust in the brand.</p>
+<p>A simplistic engine might match same category, closest weight, or same brand. However, real-world substitution behavior is <strong>multi-dimensional</strong>:</p>
+
+<div class="not-prose my-4 grid grid-cols-1 sm:grid-cols-2 gap-2">
+  <div class="flex items-center gap-2 rounded-lg bg-gray-50 dark:bg-slate-800/50 px-3 py-2 text-sm text-gray-700 dark:text-gray-300"><span class="text-blue-500 dark:text-blue-400 font-bold">&rsaquo;</span> Organic vs non-organic</div>
+  <div class="flex items-center gap-2 rounded-lg bg-gray-50 dark:bg-slate-800/50 px-3 py-2 text-sm text-gray-700 dark:text-gray-300"><span class="text-blue-500 dark:text-blue-400 font-bold">&rsaquo;</span> Brand loyalty varies by category</div>
+  <div class="flex items-center gap-2 rounded-lg bg-gray-50 dark:bg-slate-800/50 px-3 py-2 text-sm text-gray-700 dark:text-gray-300"><span class="text-blue-500 dark:text-blue-400 font-bold">&rsaquo;</span> Product weight matters</div>
+  <div class="flex items-center gap-2 rounded-lg bg-gray-50 dark:bg-slate-800/50 px-3 py-2 text-sm text-gray-700 dark:text-gray-300"><span class="text-blue-500 dark:text-blue-400 font-bold">&rsaquo;</span> Private label &rarr; margin strategy</div>
+  <div class="flex items-center gap-2 rounded-lg bg-gray-50 dark:bg-slate-800/50 px-3 py-2 text-sm text-gray-700 dark:text-gray-300"><span class="text-blue-500 dark:text-blue-400 font-bold">&rsaquo;</span> Price range is critical</div>
+</div>
+
+<p>The previous external solution operated largely as a <strong>black box</strong>. Business teams could see results, but not reasoning. Tuning behavior was limited. Strategic control was minimal.</p>
+
+<div class="not-prose mt-8 mb-4">
+  <h3 class="text-lg font-bold text-blue-700 dark:text-blue-400 border-l-4 border-blue-500 pl-3">Architectural Philosophy: Modular, Tunable, Explainable</h3>
+</div>
+
+<p>Rather than building a monolithic similarity model, I designed the system as an <strong>ensemble of independent similarity components</strong>, inspired by modular recommender architectures.</p>
+<p>The design principle: similarity is multi-dimensional. Each dimension should be measured independently, then aggregated in a controlled way. This approach ensured <strong>robustness</strong>, <strong>interpretability</strong>, <strong>business tunability</strong>, and <strong>scalability</strong>.</p>
+<div class="not-prose my-5">
+  <a href="/projects/recommendation-engines/similarity-food/BlueGranite-Out-of-Stock-Whitepaper.pdf" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-lg border border-blue-200 dark:border-blue-700 bg-blue-50 dark:bg-blue-900/25 px-4 py-2.5 text-sm font-semibold text-blue-700 dark:text-blue-300 hover:bg-blue-100 dark:hover:bg-blue-900/40 transition-colors">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"></path><path d="m7 10 5 5 5-5"></path><path d="M5 21h14"></path></svg>
+    View / Download BlueGranite Whitepaper
+  </a>
+</div>
+
+<div class="not-prose mt-8 mb-4">
+  <h3 class="text-lg font-bold text-blue-700 dark:text-blue-400 border-l-4 border-blue-500 pl-3">High-Level Architecture Overview</h3>
+</div>
+
+<p>The engine follows a <strong>content-based similarity</strong> framework structured in three main stages:</p>
+<ol>
+  <li><strong>Feature Engineering</strong></li>
+  <li><strong>Independent Similarity Computation</strong></li>
+  <li><strong>Weighted Aggregation and Ranking</strong></li>
+</ol>
+<figure>
+  <img src="/projects/recommendation-engines/similarity-food/assets/image-01.png" alt="Similarity Food architecture overview" loading="lazy" />
+  <figcaption>High-level architecture view of the Similarity – Food engine.</figcaption>
+</figure>
+
+<div class="not-prose mt-8 mb-4">
+  <h3 class="text-lg font-bold text-blue-700 dark:text-blue-400 border-l-4 border-blue-500 pl-3">Family-Normalized Weight Similarity</h3>
+</div>
+
+<p>Weight similarity in grocery is <strong>non-trivial</strong>. A 6kg beverage crate and a 150g yogurt cannot be compared on a common absolute scale.</p>
+<p>To address this, I <strong>standardized weight within each family</strong>, computed normalized distance, and converted distance into similarity. This ensures weight behaves contextually and prevents distorted comparisons.</p>
+
+<div class="not-prose mt-8 mb-4">
+  <h3 class="text-lg font-bold text-blue-700 dark:text-blue-400 border-l-4 border-blue-500 pl-3">Weighted Aggregation: Turning a Model into a Business Lever</h3>
+</div>
+
+<p>Each component produces a normalized score between 0 and 1. The final similarity score is computed as:</p>
+
+<div class="not-prose my-4 rounded-lg bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 px-5 py-4 text-center">
+  <p class="font-mono text-sm font-bold text-slate-800 dark:text-slate-200">Final Score = w&#8321; &middot; Label + w&#8322; &middot; Attributes + w&#8323; &middot; Weight</p>
+  <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">where w&#8321; + w&#8322; + w&#8323; = 1</p>
+</div>
+
+<div class="not-prose float-right ml-5 mb-4 w-56 md:w-64 lg:w-72">
+  <figure class="m-0">
+    <img src="/projects/recommendation-engines/similarity-food/assets/image-02.png" alt="Weighted aggregation reference diagram" class="rounded-xl border border-gray-200 dark:border-gray-700 w-full" loading="lazy" />
+    <figcaption class="text-xs text-center text-gray-500 dark:text-gray-400 mt-1.5">Reference diagram for weighted aggregation.</figcaption>
+  </figure>
+</div>
+
+<p>The introduction of explicit weights transforms the model from a static algorithm into a <strong>business-tunable system</strong>.</p>
+
+<div class="not-prose my-3 space-y-1.5">
+  <div class="flex items-center gap-2 text-sm"><span class="text-blue-600 dark:text-blue-400">&rarr;</span> Increase <strong class="text-gray-900 dark:text-gray-100">Bio weight</strong> <span class="text-gray-500 dark:text-gray-400">&rarr; prioritize organic substitutes</span></div>
+  <div class="flex items-center gap-2 text-sm"><span class="text-blue-600 dark:text-blue-400">&rarr;</span> Increase <strong class="text-gray-900 dark:text-gray-100">Brand weight</strong> <span class="text-gray-500 dark:text-gray-400">&rarr; preserve brand loyalty</span></div>
+  <div class="flex items-center gap-2 text-sm"><span class="text-blue-600 dark:text-blue-400">&rarr;</span> Increase <strong class="text-gray-900 dark:text-gray-100">Weight similarity</strong> <span class="text-gray-500 dark:text-gray-400">&rarr; enforce size consistency</span></div>
+  <div class="flex items-center gap-2 text-sm"><span class="text-blue-600 dark:text-blue-400">&rarr;</span> Increase <strong class="text-gray-900 dark:text-gray-100">Private Label</strong> <span class="text-gray-500 dark:text-gray-400">&rarr; support margin optimization</span></div>
+</div>
+
+<p>Instead of embedding rigid rules, the system exposes <strong>controllable parameters</strong>. This was a key differentiator from the previous vendor solution.</p>
+
+<div style="clear: both;"></div>
+
+<div class="not-prose mt-8 mb-4">
+  <h3 class="text-lg font-bold text-blue-700 dark:text-blue-400 border-l-4 border-blue-500 pl-3">Computational Scaling and Optimization</h3>
+</div>
+
+<p>With over <strong>45,000 food SKUs</strong>, na&iuml;vely computing full similarity matrices would create unnecessary computational overhead. I introduced a clear constraint: similarity is computed <strong>strictly within product families</strong>, and cross-family comparisons are excluded.</p>
+<p>This reduced complexity, improved relevance, accelerated computation, and simplified maintenance. Optimization decisions were driven by both engineering efficiency and domain logic.</p>
+
+<div class="not-prose mt-8 mb-4">
+  <h3 class="text-lg font-bold text-blue-700 dark:text-blue-400 border-l-4 border-blue-500 pl-3">Explainability and Business Adoption</h3>
+</div>
+
+<p>One of the strategic goals was restoring trust and visibility into recommendation behavior. To achieve this, I built an <strong>internal Streamlit interface</strong> that allowed business users to query any product, view ranked substitutes, adjust weights dynamically, and understand component contributions.</p>
+<p>This shifted the perception of the algorithm from a mysterious system to a <strong>transparent decision engine</strong>. Explainability accelerated adoption significantly.</p>
+
+<div class="not-prose mt-8 mb-4">
+  <h3 class="text-lg font-bold text-blue-700 dark:text-blue-400 border-l-4 border-blue-500 pl-3">Performance Benchmarking</h3>
+</div>
+
+<p>The engine was benchmarked against the external Target2Sell/Mirakl solution.</p>
+
+<div class="not-prose my-5 rounded-xl bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 border border-blue-200 dark:border-blue-800 p-5">
+  <div class="flex items-center gap-3">
+    <span class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-800/40 flex items-center justify-center text-lg">🏆</span>
+    <div>
+      <p class="text-xs font-semibold text-blue-700 dark:text-blue-400 uppercase tracking-wider mb-0.5">Benchmark Result</p>
+      <p class="text-lg font-bold text-blue-800 dark:text-blue-300">+25% add-to-cart rate</p>
+    </div>
+  </div>
+</div>
+
+<p>This validated three hypotheses: <strong>domain-specific internal data</strong> can outperform generic vendor systems, <strong>transparent architectures</strong> increase business alignment, and <strong>well-structured simplicity</strong> can outperform opaque complexity.</p>
+
+<div class="not-prose mt-8 mb-4">
+  <h3 class="text-lg font-bold text-blue-700 dark:text-blue-400 border-l-4 border-blue-500 pl-3">Strategic Impact</h3>
+</div>
+
+<div class="not-prose my-4 grid grid-cols-2 sm:grid-cols-3 gap-2">
+  <div class="flex items-start gap-2 rounded-lg bg-blue-50 dark:bg-blue-900/20 p-3"><span class="text-blue-500 dark:text-blue-400 mt-0.5">&#10003;</span><span class="text-sm font-medium text-gray-800 dark:text-gray-200">Reduced vendor dependency</span></div>
+  <div class="flex items-start gap-2 rounded-lg bg-blue-50 dark:bg-blue-900/20 p-3"><span class="text-blue-500 dark:text-blue-400 mt-0.5">&#10003;</span><span class="text-sm font-medium text-gray-800 dark:text-gray-200">Lower operational costs</span></div>
+  <div class="flex items-start gap-2 rounded-lg bg-blue-50 dark:bg-blue-900/20 p-3"><span class="text-blue-500 dark:text-blue-400 mt-0.5">&#10003;</span><span class="text-sm font-medium text-gray-800 dark:text-gray-200">Full algorithmic ownership</span></div>
+  <div class="flex items-start gap-2 rounded-lg bg-blue-50 dark:bg-blue-900/20 p-3"><span class="text-blue-500 dark:text-blue-400 mt-0.5">&#10003;</span><span class="text-sm font-medium text-gray-800 dark:text-gray-200">Faster iteration cycles</span></div>
+  <div class="flex items-start gap-2 rounded-lg bg-blue-50 dark:bg-blue-900/20 p-3"><span class="text-blue-500 dark:text-blue-400 mt-0.5">&#10003;</span><span class="text-sm font-medium text-gray-800 dark:text-gray-200">Cross-functional trust</span></div>
+</div>
+
+<p>The system is modular and extensible, allowing future enhancements such as customer-level personalization, segment-based weighting, feedback-driven adaptation, and A/B testing optimization.</p>
+
+<div class="not-prose mt-8 mb-4">
+  <h3 class="text-lg font-bold text-blue-700 dark:text-blue-400 border-l-4 border-blue-500 pl-3">Reflections as a Data Scientist</h3>
+</div>
+
+<div class="not-prose my-4 rounded-xl bg-gray-50 dark:bg-slate-800/40 border border-gray-200 dark:border-gray-700 p-5">
+  <p class="text-sm text-gray-700 dark:text-gray-300 leading-relaxed mb-3">This project reinforced several principles that now define how I approach advanced analytics:</p>
+  <div class="space-y-2">
+    <div class="flex items-center gap-2 text-sm font-medium text-gray-800 dark:text-gray-200"><span class="text-blue-500">&#9670;</span> Design <strong>systems</strong>, not just models</div>
+    <div class="flex items-center gap-2 text-sm font-medium text-gray-800 dark:text-gray-200"><span class="text-blue-500">&#9670;</span> Favor <strong>modular architectures</strong></div>
+    <div class="flex items-center gap-2 text-sm font-medium text-gray-800 dark:text-gray-200"><span class="text-blue-500">&#9670;</span> Make algorithms <strong>tunable</strong></div>
+    <div class="flex items-center gap-2 text-sm font-medium text-gray-800 dark:text-gray-200"><span class="text-blue-500">&#9670;</span> Optimize for <strong>explainability</strong> as much as accuracy</div>
+    <div class="flex items-center gap-2 text-sm font-medium text-gray-800 dark:text-gray-200"><span class="text-blue-500">&#9670;</span> Align mathematical structure with <strong>business strategy</strong></div>
+  </div>
+</div>
+
+<p>The &ldquo;Similarity – Food&rdquo; engine illustrates that replacing a black-box vendor does not require extreme complexity. It requires <strong>thoughtful modeling</strong>, <strong>architectural clarity</strong>, and <strong>disciplined alignment</strong> between technical design and business objectives.</p>`,
             items: [
               { title: 'Python' },
               { title: 'NLP / TF-IDF' },
@@ -628,7 +792,171 @@ export const translations = {
             title: 'Similarité - Alimentaire',
             tagline: 'NLP · Attributs Produit',
             icon: 'tabler:salad',
-            content: '<p>Développement d\'un <strong>moteur de recommandation content-based</strong> pour les produits alimentaires sur Auchan.fr. Le moteur exploite des techniques NLP appliquées aux attributs produit (nom, catégorie, description, données nutritionnelles) pour calculer des scores de similarité entre articles.</p><p>Les embeddings produit sont générés par <strong>vectorisation TF-IDF</strong> combinée à la similarité cosinus. Le modèle tourne via un <strong>DAG Airflow quotidien</strong> qui rafraîchit les recommandations à partir du dernier catalogue. Résultat : <strong>+25% de taux d\'ajout au panier</strong> par rapport à la solution précédente (Target2Sell).</p>',
+            content: `<div class="not-prose mb-4">
+  <h3 class="text-xl font-bold text-blue-700 dark:text-blue-400 border-l-4 border-blue-600 dark:border-blue-500 pl-3 mb-0.5">Remplacer un moteur de recommandation &laquo; bo&icirc;te noire &raquo;</h3>
+  <p class="text-xs font-medium text-gray-500 dark:text-gray-400 pl-4 uppercase tracking-wider">Conception du moteur &laquo; Similarit&eacute; – Alimentaire &raquo; chez Auchan</p>
+</div>
+
+<p>Dans le cadre de l&rsquo;effort strat&eacute;gique d&rsquo;Auchan visant &agrave; <strong>internaliser ses capacit&eacute;s avanc&eacute;es en analytics</strong>, j&rsquo;ai pilot&eacute; la conception et l&rsquo;impl&eacute;mentation end-to-end d&rsquo;un moteur de substitution produit pour l&rsquo;e-commerce alimentaire.</p>
+<p>L&rsquo;objectif &eacute;tait simple mais strat&eacute;gique : lorsqu&rsquo;un produit est <strong>en rupture</strong> sur la plateforme e-commerce, proposer les substituts les plus pertinents afin de pr&eacute;server le chiffre d&rsquo;affaires et maintenir une exp&eacute;rience client fluide.</p>
+<p>Le projet visait &agrave; remplacer une solution externe co&ucirc;teuse et opaque <span class="text-gray-500 dark:text-gray-400">(Target2Sell / Mirakl)</span> par un syst&egrave;me interne, explicable et scalable &mdash; aliment&eacute; enti&egrave;rement par les donn&eacute;es produit d&rsquo;Auchan.</p>
+
+<div class="not-prose my-6 rounded-xl bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 border border-green-200 dark:border-green-800 p-5">
+  <div class="flex items-center gap-3">
+    <span class="flex-shrink-0 w-10 h-10 rounded-full bg-green-100 dark:bg-green-900/40 flex items-center justify-center text-lg">📈</span>
+    <div>
+      <p class="text-xs font-semibold text-green-700 dark:text-green-400 uppercase tracking-wider mb-0.5">R&eacute;sultat</p>
+      <p class="text-lg font-bold text-green-800 dark:text-green-300">+25% de taux d&rsquo;ajout au panier <span class="text-sm font-normal text-green-600 dark:text-green-400">vs. solution externe pr&eacute;c&eacute;dente</span></p>
+    </div>
+  </div>
+</div>
+
+<div class="not-prose mt-8 mb-4">
+  <h3 class="text-lg font-bold text-blue-700 dark:text-blue-400 border-l-4 border-blue-500 pl-3">Cadrage du probl&egrave;me : la substitution ne se r&eacute;sume pas &agrave; un simple matching</h3>
+</div>
+
+<p>En e-commerce alimentaire, les ruptures sont in&eacute;vitables. La vraie question n&rsquo;est pas de savoir <em>si</em> la substitution doit exister, mais <strong>comment elle doit &ecirc;tre faite intelligemment</strong>.</p>
+<p>Quand un produit devient indisponible, les clients peuvent abandonner leur panier, quitter la plateforme, choisir un substitut peu pertinent ou perdre confiance dans la marque.</p>
+<p>Un moteur simpliste peut matcher la m&ecirc;me cat&eacute;gorie, le poids le plus proche ou la m&ecirc;me marque. En r&eacute;alit&eacute;, le comportement de substitution est <strong>multidimensionnel</strong> :</p>
+
+<div class="not-prose my-4 grid grid-cols-1 sm:grid-cols-2 gap-2">
+  <div class="flex items-center gap-2 rounded-lg bg-gray-50 dark:bg-slate-800/50 px-3 py-2 text-sm text-gray-700 dark:text-gray-300"><span class="text-blue-500 dark:text-blue-400 font-bold">&rsaquo;</span> Bio vs non-bio</div>
+  <div class="flex items-center gap-2 rounded-lg bg-gray-50 dark:bg-slate-800/50 px-3 py-2 text-sm text-gray-700 dark:text-gray-300"><span class="text-blue-500 dark:text-blue-400 font-bold">&rsaquo;</span> Fid&eacute;lit&eacute; marque variable par cat&eacute;gorie</div>
+  <div class="flex items-center gap-2 rounded-lg bg-gray-50 dark:bg-slate-800/50 px-3 py-2 text-sm text-gray-700 dark:text-gray-300"><span class="text-blue-500 dark:text-blue-400 font-bold">&rsaquo;</span> Le poids du produit compte</div>
+  <div class="flex items-center gap-2 rounded-lg bg-gray-50 dark:bg-slate-800/50 px-3 py-2 text-sm text-gray-700 dark:text-gray-300"><span class="text-blue-500 dark:text-blue-400 font-bold">&rsaquo;</span> MDD &rarr; strat&eacute;gie de marge</div>
+  <div class="flex items-center gap-2 rounded-lg bg-gray-50 dark:bg-slate-800/50 px-3 py-2 text-sm text-gray-700 dark:text-gray-300"><span class="text-blue-500 dark:text-blue-400 font-bold">&rsaquo;</span> Gamme de prix critique</div>
+</div>
+
+<p>La solution externe pr&eacute;c&eacute;dente fonctionnait largement comme une <strong>bo&icirc;te noire</strong>. Les &eacute;quipes m&eacute;tier voyaient les r&eacute;sultats sans pouvoir expliquer le raisonnement. Le tuning &eacute;tait limit&eacute;, et le contr&ocirc;le strat&eacute;gique minimal.</p>
+
+<div class="not-prose mt-8 mb-4">
+  <h3 class="text-lg font-bold text-blue-700 dark:text-blue-400 border-l-4 border-blue-500 pl-3">Philosophie d&rsquo;architecture : modulaire, param&eacute;trable, explicable</h3>
+</div>
+
+<p>Plut&ocirc;t que de construire un mod&egrave;le monolithique, j&rsquo;ai con&ccedil;u le syst&egrave;me comme un <strong>ensemble de composants de similarit&eacute; ind&eacute;pendants</strong>, inspir&eacute; des architectures de recommandation modulaires.</p>
+<p>Principe central : la similarit&eacute; est multidimensionnelle. Chaque dimension doit &ecirc;tre mesur&eacute;e ind&eacute;pendamment puis agr&eacute;g&eacute;e de mani&egrave;re contr&ocirc;l&eacute;e. Cette approche garantit <strong>robustesse</strong>, <strong>interpr&eacute;tabilit&eacute;</strong>, <strong>param&eacute;trage m&eacute;tier</strong> et <strong>scalabilit&eacute;</strong>.</p>
+<div class="not-prose my-5">
+  <a href="/projects/recommendation-engines/similarity-food/BlueGranite-Out-of-Stock-Whitepaper.pdf" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-lg border border-blue-200 dark:border-blue-700 bg-blue-50 dark:bg-blue-900/25 px-4 py-2.5 text-sm font-semibold text-blue-700 dark:text-blue-300 hover:bg-blue-100 dark:hover:bg-blue-900/40 transition-colors">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"></path><path d="m7 10 5 5 5-5"></path><path d="M5 21h14"></path></svg>
+    Voir / T&eacute;l&eacute;charger le livre blanc BlueGranite
+  </a>
+</div>
+
+<div class="not-prose mt-8 mb-4">
+  <h3 class="text-lg font-bold text-blue-700 dark:text-blue-400 border-l-4 border-blue-500 pl-3">Vue d&rsquo;ensemble de l&rsquo;architecture</h3>
+</div>
+
+<p>Le moteur suit un framework de <strong>similarit&eacute; content-based</strong> en trois &eacute;tapes :</p>
+<ol>
+  <li><strong>Feature Engineering</strong></li>
+  <li><strong>Calcul ind&eacute;pendant des similarit&eacute;s</strong></li>
+  <li><strong>Agr&eacute;gation pond&eacute;r&eacute;e et ranking</strong></li>
+</ol>
+<figure>
+  <img src="/projects/recommendation-engines/similarity-food/assets/image-01.png" alt="Vue d'ensemble de l'architecture Similarit&eacute; Food" loading="lazy" />
+  <figcaption>Vue d&rsquo;ensemble de l&rsquo;architecture du moteur Similarit&eacute; – Alimentaire.</figcaption>
+</figure>
+
+<div class="not-prose mt-8 mb-4">
+  <h3 class="text-lg font-bold text-blue-700 dark:text-blue-400 border-l-4 border-blue-500 pl-3">Similarit&eacute; de poids normalis&eacute;e par famille</h3>
+</div>
+
+<p>La similarit&eacute; sur le poids en alimentaire est <strong>non triviale</strong> : une caisse de boisson de 6kg et un yaourt de 150g ne peuvent pas &ecirc;tre compar&eacute;s sur une &eacute;chelle absolue commune.</p>
+<p>Pour y r&eacute;pondre, j&rsquo;ai <strong>standardis&eacute; le poids &agrave; l&rsquo;int&eacute;rieur de chaque famille produit</strong>, calcul&eacute; une distance normalis&eacute;e puis converti cette distance en similarit&eacute;. Le poids devient ainsi contextuel et les comparaisons restent coh&eacute;rentes.</p>
+
+<div class="not-prose mt-8 mb-4">
+  <h3 class="text-lg font-bold text-blue-700 dark:text-blue-400 border-l-4 border-blue-500 pl-3">Agr&eacute;gation pond&eacute;r&eacute;e : transformer un mod&egrave;le en levier m&eacute;tier</h3>
+</div>
+
+<p>Chaque composant produit un score normalis&eacute; entre 0 et 1. Le score final est :</p>
+
+<div class="not-prose my-4 rounded-lg bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 px-5 py-4 text-center">
+  <p class="font-mono text-sm font-bold text-slate-800 dark:text-slate-200">Score final = w&#8321; &middot; Label + w&#8322; &middot; Attributes + w&#8323; &middot; Weight</p>
+  <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">avec w&#8321; + w&#8322; + w&#8323; = 1</p>
+</div>
+
+<div class="not-prose float-right ml-5 mb-4 w-56 md:w-64 lg:w-72">
+  <figure class="m-0">
+    <img src="/projects/recommendation-engines/similarity-food/assets/image-02.png" alt="Sch&eacute;ma de r&eacute;f&eacute;rence pour l'agr&eacute;gation pond&eacute;r&eacute;e" class="rounded-xl border border-gray-200 dark:border-gray-700 w-full" loading="lazy" />
+    <figcaption class="text-xs text-center text-gray-500 dark:text-gray-400 mt-1.5">Sch&eacute;ma de r&eacute;f&eacute;rence &mdash; agr&eacute;gation pond&eacute;r&eacute;e.</figcaption>
+  </figure>
+</div>
+
+<p>L&rsquo;introduction de poids explicites transforme l&rsquo;algorithme statique en <strong>syst&egrave;me ajustable par le m&eacute;tier</strong>.</p>
+
+<div class="not-prose my-3 space-y-1.5">
+  <div class="flex items-center gap-2 text-sm"><span class="text-blue-600 dark:text-blue-400">&rarr;</span> Augmenter <strong class="text-gray-900 dark:text-gray-100">poids Bio</strong> <span class="text-gray-500 dark:text-gray-400">&rarr; prioriser les substituts bio</span></div>
+  <div class="flex items-center gap-2 text-sm"><span class="text-blue-600 dark:text-blue-400">&rarr;</span> Augmenter <strong class="text-gray-900 dark:text-gray-100">poids Marque</strong> <span class="text-gray-500 dark:text-gray-400">&rarr; pr&eacute;server la fid&eacute;lit&eacute; marque</span></div>
+  <div class="flex items-center gap-2 text-sm"><span class="text-blue-600 dark:text-blue-400">&rarr;</span> Augmenter <strong class="text-gray-900 dark:text-gray-100">poids Poids</strong> <span class="text-gray-500 dark:text-gray-400">&rarr; renforcer la coh&eacute;rence de format</span></div>
+  <div class="flex items-center gap-2 text-sm"><span class="text-blue-600 dark:text-blue-400">&rarr;</span> Augmenter <strong class="text-gray-900 dark:text-gray-100">influence MDD</strong> <span class="text-gray-500 dark:text-gray-400">&rarr; soutenir l&rsquo;optimisation de marge</span></div>
+</div>
+
+<p>Au lieu d&rsquo;encoder des r&egrave;gles rigides, le syst&egrave;me expose des <strong>param&egrave;tres contr&ocirc;lables</strong>. C&rsquo;&eacute;tait un diff&eacute;renciateur majeur face &agrave; la solution fournisseur pr&eacute;c&eacute;dente.</p>
+
+<div style="clear: both;"></div>
+
+<div class="not-prose mt-8 mb-4">
+  <h3 class="text-lg font-bold text-blue-700 dark:text-blue-400 border-l-4 border-blue-500 pl-3">Scalabilit&eacute; et optimisation du calcul</h3>
+</div>
+
+<p>Avec plus de <strong>45 000 SKU alimentaires</strong>, calculer na&iuml;vement des matrices de similarit&eacute; compl&egrave;tes aurait cr&eacute;&eacute; un surco&ucirc;t computationnel inutile. J&rsquo;ai introduit une contrainte : la similarit&eacute; est calcul&eacute;e <strong>strictement au sein des familles produit</strong>, sans comparaisons inter-familles.</p>
+<p>Cela a r&eacute;duit la complexit&eacute;, am&eacute;lior&eacute; la pertinence, acc&eacute;l&eacute;r&eacute; les calculs et simplifi&eacute; la maintenance. Les choix d&rsquo;optimisation ont &eacute;t&eacute; guid&eacute;s &agrave; la fois par l&rsquo;efficacit&eacute; engineering et la logique m&eacute;tier.</p>
+
+<div class="not-prose mt-8 mb-4">
+  <h3 class="text-lg font-bold text-blue-700 dark:text-blue-400 border-l-4 border-blue-500 pl-3">Explicabilit&eacute; et adoption m&eacute;tier</h3>
+</div>
+
+<p>Un objectif strat&eacute;gique cl&eacute; &eacute;tait de restaurer la confiance et la visibilit&eacute; sur le comportement de recommandation. Pour cela, j&rsquo;ai d&eacute;velopp&eacute; une <strong>interface Streamlit interne</strong> permettant aux utilisateurs m&eacute;tier de rechercher un produit, voir les substituts class&eacute;s, ajuster les poids en dynamique et comprendre la contribution de chaque composant.</p>
+<p>Le moteur est ainsi pass&eacute; d&rsquo;un syst&egrave;me per&ccedil;u comme opaque &agrave; un <strong>moteur de d&eacute;cision transparent</strong>. L&rsquo;explicabilit&eacute; a acc&eacute;l&eacute;r&eacute; l&rsquo;adoption.</p>
+
+<div class="not-prose mt-8 mb-4">
+  <h3 class="text-lg font-bold text-blue-700 dark:text-blue-400 border-l-4 border-blue-500 pl-3">Benchmark de performance</h3>
+</div>
+
+<p>Le moteur a &eacute;t&eacute; benchmark&eacute; face &agrave; la solution externe Target2Sell/Mirakl.</p>
+
+<div class="not-prose my-5 rounded-xl bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 border border-blue-200 dark:border-blue-800 p-5">
+  <div class="flex items-center gap-3">
+    <span class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-800/40 flex items-center justify-center text-lg">🏆</span>
+    <div>
+      <p class="text-xs font-semibold text-blue-700 dark:text-blue-400 uppercase tracking-wider mb-0.5">R&eacute;sultat du benchmark</p>
+      <p class="text-lg font-bold text-blue-800 dark:text-blue-300">+25% de taux d&rsquo;ajout au panier</p>
+    </div>
+  </div>
+</div>
+
+<p>Ce r&eacute;sultat valide trois hypoth&egrave;ses : les <strong>donn&eacute;es internes orient&eacute;es domaine</strong> peuvent surpasser des syst&egrave;mes fournisseurs g&eacute;n&eacute;riques, les <strong>architectures transparentes</strong> am&eacute;liorent l&rsquo;alignement m&eacute;tier, et une <strong>simplicit&eacute; bien structur&eacute;e</strong> peut d&eacute;passer une complexit&eacute; opaque.</p>
+
+<div class="not-prose mt-8 mb-4">
+  <h3 class="text-lg font-bold text-blue-700 dark:text-blue-400 border-l-4 border-blue-500 pl-3">Impact strat&eacute;gique</h3>
+</div>
+
+<div class="not-prose my-4 grid grid-cols-2 sm:grid-cols-3 gap-2">
+  <div class="flex items-start gap-2 rounded-lg bg-blue-50 dark:bg-blue-900/20 p-3"><span class="text-blue-500 dark:text-blue-400 mt-0.5">&#10003;</span><span class="text-sm font-medium text-gray-800 dark:text-gray-200">Moins de d&eacute;pendance fournisseur</span></div>
+  <div class="flex items-start gap-2 rounded-lg bg-blue-50 dark:bg-blue-900/20 p-3"><span class="text-blue-500 dark:text-blue-400 mt-0.5">&#10003;</span><span class="text-sm font-medium text-gray-800 dark:text-gray-200">Co&ucirc;ts op&eacute;rationnels r&eacute;duits</span></div>
+  <div class="flex items-start gap-2 rounded-lg bg-blue-50 dark:bg-blue-900/20 p-3"><span class="text-blue-500 dark:text-blue-400 mt-0.5">&#10003;</span><span class="text-sm font-medium text-gray-800 dark:text-gray-200">Pleine ma&icirc;trise algorithmique</span></div>
+  <div class="flex items-start gap-2 rounded-lg bg-blue-50 dark:bg-blue-900/20 p-3"><span class="text-blue-500 dark:text-blue-400 mt-0.5">&#10003;</span><span class="text-sm font-medium text-gray-800 dark:text-gray-200">It&eacute;rations plus rapides</span></div>
+  <div class="flex items-start gap-2 rounded-lg bg-blue-50 dark:bg-blue-900/20 p-3"><span class="text-blue-500 dark:text-blue-400 mt-0.5">&#10003;</span><span class="text-sm font-medium text-gray-800 dark:text-gray-200">Confiance inter-&eacute;quipes</span></div>
+</div>
+
+<p>Le syst&egrave;me reste modulaire et extensible, avec des pistes d&rsquo;&eacute;volution comme la personnalisation client, la pond&eacute;ration par segment, l&rsquo;adaptation pilot&eacute;e par feedback et l&rsquo;optimisation par A/B testing.</p>
+
+<div class="not-prose mt-8 mb-4">
+  <h3 class="text-lg font-bold text-blue-700 dark:text-blue-400 border-l-4 border-blue-500 pl-3">Retour d&rsquo;exp&eacute;rience</h3>
+</div>
+
+<div class="not-prose my-4 rounded-xl bg-gray-50 dark:bg-slate-800/40 border border-gray-200 dark:border-gray-700 p-5">
+  <p class="text-sm text-gray-700 dark:text-gray-300 leading-relaxed mb-3">Ce projet a renforc&eacute; plusieurs principes qui structurent aujourd&rsquo;hui ma pratique :</p>
+  <div class="space-y-2">
+    <div class="flex items-center gap-2 text-sm font-medium text-gray-800 dark:text-gray-200"><span class="text-blue-500">&#9670;</span> Concevoir des <strong>syst&egrave;mes</strong>, pas seulement des mod&egrave;les</div>
+    <div class="flex items-center gap-2 text-sm font-medium text-gray-800 dark:text-gray-200"><span class="text-blue-500">&#9670;</span> Privil&eacute;gier les <strong>architectures modulaires</strong></div>
+    <div class="flex items-center gap-2 text-sm font-medium text-gray-800 dark:text-gray-200"><span class="text-blue-500">&#9670;</span> Rendre les algorithmes <strong>param&eacute;trables</strong></div>
+    <div class="flex items-center gap-2 text-sm font-medium text-gray-800 dark:text-gray-200"><span class="text-blue-500">&#9670;</span> Optimiser l&rsquo;<strong>explicabilit&eacute;</strong> autant que la performance</div>
+    <div class="flex items-center gap-2 text-sm font-medium text-gray-800 dark:text-gray-200"><span class="text-blue-500">&#9670;</span> Aligner la structure math&eacute;matique sur la <strong>strat&eacute;gie business</strong></div>
+  </div>
+</div>
+
+<p>Le moteur &laquo; Similarit&eacute; – Alimentaire &raquo; montre que remplacer une solution bo&icirc;te noire ne n&eacute;cessite pas une complexit&eacute; extr&ecirc;me, mais une <strong>mod&eacute;lisation rigoureuse</strong>, une <strong>architecture claire</strong> et un <strong>alignement disciplin&eacute;</strong> entre design technique et objectifs m&eacute;tier.</p>`,
             items: [
               { title: 'Python' },
               { title: 'NLP / TF-IDF' },
