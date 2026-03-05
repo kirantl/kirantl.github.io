@@ -1,11 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
-    <text x="50%" y="50%" dominant-baseline="central" text-anchor="middle" font-size="96" font-family="Arial, sans-serif" font-weight="bold">
-        <tspan class="light">KT</tspan>
-    </text>
+  <defs>
     <style>
-        text { fill: #1e40af; }
-        @media (prefers-color-scheme: dark) {
-            text { fill: #60a5fa; }
-        }
+      .letter { fill: #1e40af; }
+      @media (prefers-color-scheme: dark) {
+        .letter { fill: #60a5fa; }
+      }
     </style>
-</svg>
+  </defs>
+  <path class="letter" d="M6,14 H20 V48 L52,14 H68 L32,58 L68,114 H52 L20,68 V114 H6 Z"/>
+  <path class="letter" d="M66,14 H122 V28 H101 V114 H87 V28 H66 Z"/>
