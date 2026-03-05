@@ -69,7 +69,7 @@ const metadata = {
             {/* Accordion content — hidden by default */}
             <div class="accordion-content hidden" data-panel={item.id}>
               <div class="px-6 sm:px-8 pb-6 sm:pb-8 border-t border-gray-100 dark:border-gray-700 pt-6">
-                <div class="prose prose-lg dark:prose-invert max-w-none mb-6" set:html={item.content} />
+                <div class="prose dark:prose-invert max-w-none mb-6" set:html={item.content} />
                 <div class="flex flex-wrap gap-2">
                   {item.items.map((tech: any) => (
                     <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300">
