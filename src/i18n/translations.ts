@@ -402,16 +402,146 @@ export const translations = {
           {
             id: 'similarity-nonfood',
             title: 'Similarity - Non Food Products',
-            tagline: 'Embeddings · Product Catalog',
+            tagline: 'NLP · Semantic Similarity',
             icon: 'tabler:device-laptop',
-            content: '<p>Built a <strong>similarity engine for non-food products</strong> (electronics, home, textile, etc.) where product attributes are less structured and descriptions are sparser than food.</p><p>Used <strong>sentence-transformer embeddings</strong> to capture semantic meaning from product titles and descriptions, combined with categorical feature encoding. A <strong>FAISS-based approximate nearest neighbor</strong> search enables real-time retrieval of the top-N similar products. Deployed as a <strong>Cloud Function</strong> with BigQuery as the feature store.</p>',
+            content: `<div class="not-prose mb-4">
+  <h3 class="text-xl font-bold text-blue-700 dark:text-blue-400">Adapting Similarity to Sparse Data</h3>
+  <p class="text-sm font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Designing the &ldquo;Similarity &ndash; Non Food&rdquo; Engine at Auchan</p>
+</div>
+
+<div class="not-prose mb-6 rounded-lg bg-blue-50/60 dark:bg-blue-900/15 border border-blue-100 dark:border-blue-800/50 px-4 py-3">
+  <p class="text-sm text-gray-700 dark:text-gray-300 flex items-start gap-2">
+    <svg class="w-4 h-4 mt-0.5 text-blue-500 dark:text-blue-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+    <span>This article builds upon the principles established in the <a href="#similarity-food" class="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Similarity &ndash; Food Products</a> engine. Reading that article first is recommended for full architectural context.</span>
+  </p>
+</div>
+
+<p>Following the successful deployment of the Similarity &ndash; Food substitution engine, the next challenge was extending the approach to <strong>non-food products</strong> across the Auchan e-commerce platform.</p>
+<p>At first glance, the problem appears similar: when a product is unavailable, propose relevant alternatives to preserve customer experience and reduce cart abandonment.</p>
+<p>However, non-food products introduce a <strong>fundamentally different modeling landscape</strong>. While food products contain rich attributes (ingredients, bio markers, nutritional data, weight normalization, etc.), non-food products typically feature far fewer structured attributes.</p>
+<p>The challenge was not to replicate the food algorithm &mdash; but to <strong>adapt the architecture</strong> to a simpler data environment while maintaining recommendation quality.</p>
+
+<div class="not-prose mt-8 mb-4">
+  <h3 class="text-lg font-semibold text-blue-700 dark:text-blue-400 flex items-center gap-2"><svg class="w-4 h-4 text-blue-500 dark:text-blue-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>Reframing the Problem</h3>
+</div>
+
+<p>Non-food substitution behavior is inherently simpler than food substitution:</p>
+
+<div class="not-prose my-4 grid grid-cols-1 sm:grid-cols-2 gap-2">
+  <div class="flex items-center gap-2 rounded-lg bg-gray-100 dark:bg-slate-700/60 px-3 py-2 text-sm text-gray-700 dark:text-gray-300"><span class="text-blue-500 dark:text-blue-400 font-bold">&rsaquo;</span> Ingredient-level attributes are irrelevant</div>
+  <div class="flex items-center gap-2 rounded-lg bg-gray-100 dark:bg-slate-700/60 px-3 py-2 text-sm text-gray-700 dark:text-gray-300"><span class="text-blue-500 dark:text-blue-400 font-bold">&rsaquo;</span> Nutritional comparisons do not apply</div>
+  <div class="flex items-center gap-2 rounded-lg bg-gray-100 dark:bg-slate-700/60 px-3 py-2 text-sm text-gray-700 dark:text-gray-300"><span class="text-blue-500 dark:text-blue-400 font-bold">&rsaquo;</span> Weight similarity is rarely meaningful</div>
+  <div class="flex items-center gap-2 rounded-lg bg-gray-100 dark:bg-slate-700/60 px-3 py-2 text-sm text-gray-700 dark:text-gray-300"><span class="text-blue-500 dark:text-blue-400 font-bold">&rsaquo;</span> Product label becomes the primary signal</div>
+</div>
+
+<p>Substitution decisions in non-food are primarily driven by <strong>product description and semantic meaning</strong>. Rather than being a drawback, the limited attribute space actually simplifies the modeling strategy. With fewer competing signals, the focus shifts to extracting maximum information from product descriptions.</p>
+
+<div class="not-prose mt-8 mb-4">
+  <h3 class="text-lg font-semibold text-blue-700 dark:text-blue-400 flex items-center gap-2"><svg class="w-4 h-4 text-blue-500 dark:text-blue-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>Architectural Philosophy: Simplicity with Precision</h3>
+</div>
+
+<p>The design principle for the non-food engine was straightforward:</p>
+
+<div class="not-prose my-6 border-l-4 border-blue-500 dark:border-blue-400 pl-4 py-2">
+  <p class="text-base font-medium text-gray-800 dark:text-gray-100 italic">When the signal space is limited, focus on extracting maximum value from the strongest signal.</p>
+</div>
+
+<p>In this case, the strongest signal is the <strong>product label</strong>.</p>
+<p>Instead of building multiple attribute-based similarity models as in the food engine, the non-food algorithm focuses exclusively on <strong>semantic similarity between product labels</strong>.</p>
+<p>To improve robustness and capture different linguistic patterns, the system computes similarity using <strong>two complementary semantic similarity methods</strong> applied to the product label.</p>
+
+<div class="not-prose mt-8 mb-4">
+  <h3 class="text-lg font-semibold text-blue-700 dark:text-blue-400 flex items-center gap-2"><svg class="w-4 h-4 text-blue-500 dark:text-blue-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>Dual Semantic Similarity Modeling</h3>
+</div>
+
+<p>Since the product label is the primary information source, the algorithm leverages <strong>two distinct semantic similarity approaches</strong> to analyze product descriptions from complementary perspectives.</p>
+<p>Each model processes the label differently and produces an independent similarity score. While one model focuses on <strong>lexical similarity patterns</strong>, the other captures <strong>broader semantic relationships</strong> between words.</p>
+<p>By combining two distinct similarity computations, the system becomes more robust to variations in wording, phrasing, and product naming conventions that are common in large retail catalogs.</p>
+<p>This approach ensures the algorithm can capture both <strong>surface-level similarity</strong> and <strong>deeper semantic relationships</strong> between products, even when descriptions are not identical.</p>
+
+<div class="not-prose mt-8 mb-4">
+  <h3 class="text-lg font-semibold text-blue-700 dark:text-blue-400 flex items-center gap-2"><svg class="w-4 h-4 text-blue-500 dark:text-blue-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>Weighted Aggregation</h3>
+</div>
+
+<p>Each similarity model produces a normalized score between 0 and 1. The final similarity score is computed through a weighted aggregation:</p>
+
+<div class="not-prose my-8 flex flex-col items-center">
+  <div class="w-full rounded-lg bg-gray-50 dark:bg-slate-800/50 py-6 px-8 text-center">
+    <p class="text-lg md:text-xl italic text-gray-800 dark:text-gray-100" style="font-family: 'Times New Roman', 'Georgia', 'CMU Serif', serif; letter-spacing: 0.02em;">Final Score = <var>w</var><sub>1</sub> &middot; Similarity<sub>Model&thinsp;1</sub> + <var>w</var><sub>2</sub> &middot; Similarity<sub>Model&thinsp;2</sub></p>
+    <p class="mt-3 text-sm text-gray-500 dark:text-gray-400" style="font-family: 'Times New Roman', 'Georgia', serif;">Where : &ensp; <var>w</var><sub>1</sub> + <var>w</var><sub>2</sub> = 1</p>
+  </div>
+</div>
+
+<p>This maintains the same architectural advantages introduced in the food similarity engine:</p>
+
+<div class="not-prose my-3 space-y-1.5">
+  <div class="flex items-center gap-2 text-sm"><span class="text-blue-600 dark:text-blue-400">&rarr;</span> <strong class="text-gray-900 dark:text-gray-100">Transparent scoring</strong> <span class="text-gray-500 dark:text-gray-400">&rarr; fully explainable results</span></div>
+  <div class="flex items-center gap-2 text-sm"><span class="text-blue-600 dark:text-blue-400">&rarr;</span> <strong class="text-gray-900 dark:text-gray-100">Explainable recommendations</strong> <span class="text-gray-500 dark:text-gray-400">&rarr; builds business trust</span></div>
+  <div class="flex items-center gap-2 text-sm"><span class="text-blue-600 dark:text-blue-400">&rarr;</span> <strong class="text-gray-900 dark:text-gray-100">Adjustable weighting</strong> <span class="text-gray-500 dark:text-gray-400">&rarr; business-tunable parameters</span></div>
+</div>
+
+<p>Although simpler than the food engine, the weighted structure still provides <strong>flexibility and interpretability</strong>.</p>
+
+<div class="not-prose mt-8 mb-4">
+  <h3 class="text-lg font-semibold text-blue-700 dark:text-blue-400 flex items-center gap-2"><svg class="w-4 h-4 text-blue-500 dark:text-blue-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>Efficient Scaling</h3>
+</div>
+
+<p>Because the algorithm focuses primarily on product labels, the computational footprint is <strong>significantly lighter</strong> than the food engine. This allows the system to:</p>
+
+<div class="not-prose my-4 grid grid-cols-1 sm:grid-cols-3 gap-2">
+  <div class="flex items-center gap-2 rounded-lg bg-blue-50 dark:bg-blue-900/20 p-3"><span class="text-blue-500 dark:text-blue-400">&#10003;</span><span class="text-sm font-medium text-gray-800 dark:text-gray-200">Fast computation across large catalogs</span></div>
+  <div class="flex items-center gap-2 rounded-lg bg-blue-50 dark:bg-blue-900/20 p-3"><span class="text-blue-500 dark:text-blue-400">&#10003;</span><span class="text-sm font-medium text-gray-800 dark:text-gray-200">Low operational complexity</span></div>
+  <div class="flex items-center gap-2 rounded-lg bg-blue-50 dark:bg-blue-900/20 p-3"><span class="text-blue-500 dark:text-blue-400">&#10003;</span><span class="text-sm font-medium text-gray-800 dark:text-gray-200">Efficient scaling across categories</span></div>
+</div>
+
+<p>The design intentionally prioritizes <strong>speed, maintainability, and robustness</strong>.</p>
+
+<div class="not-prose mt-8 mb-4">
+  <h3 class="text-lg font-semibold text-blue-700 dark:text-blue-400 flex items-center gap-2"><svg class="w-4 h-4 text-blue-500 dark:text-blue-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>From Model to Deployment</h3>
+</div>
+
+<p>One of the key advantages of this project was the ability to <strong>reuse the infrastructure</strong> built during the development of the food similarity engine.</p>
+<p>The previous project had already established:</p>
+
+<div class="not-prose my-4 grid grid-cols-2 gap-2">
+  <div class="flex items-center gap-2 rounded-lg bg-gray-100 dark:bg-slate-700/60 px-3 py-2 text-sm text-gray-700 dark:text-gray-300"><span class="text-blue-500 dark:text-blue-400 font-bold">&rsaquo;</span> Similarity computation pipelines</div>
+  <div class="flex items-center gap-2 rounded-lg bg-gray-100 dark:bg-slate-700/60 px-3 py-2 text-sm text-gray-700 dark:text-gray-300"><span class="text-blue-500 dark:text-blue-400 font-bold">&rsaquo;</span> Evaluation frameworks</div>
+  <div class="flex items-center gap-2 rounded-lg bg-gray-100 dark:bg-slate-700/60 px-3 py-2 text-sm text-gray-700 dark:text-gray-300"><span class="text-blue-500 dark:text-blue-400 font-bold">&rsaquo;</span> Internal testing tools</div>
+  <div class="flex items-center gap-2 rounded-lg bg-gray-100 dark:bg-slate-700/60 px-3 py-2 text-sm text-gray-700 dark:text-gray-300"><span class="text-blue-500 dark:text-blue-400 font-bold">&rsaquo;</span> Deployment workflows</div>
+</div>
+
+<p>As a result, the non-food engine moved from design to deployment <strong>significantly faster</strong>.</p>
+
+<div class="not-prose my-6 border-l-4 border-amber-500 dark:border-amber-400 pl-4 py-2">
+  <p class="text-xs font-semibold text-amber-600 dark:text-amber-400 uppercase tracking-wider mb-1">Key Principle</p>
+  <p class="text-base font-medium text-gray-800 dark:text-gray-100">Well-designed systems accelerate future innovation.</p>
+</div>
+
+<p>By leveraging the existing architecture, the non-food substitution engine was implemented and deployed with <strong>minimal additional operational overhead</strong>.</p>
+
+<div class="not-prose mt-8 mb-4">
+  <h3 class="text-lg font-semibold text-blue-700 dark:text-blue-400 flex items-center gap-2"><svg class="w-4 h-4 text-blue-500 dark:text-blue-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>Key Takeaways</h3>
+</div>
+
+<div class="not-prose my-4 rounded-xl bg-gray-50 dark:bg-slate-800/40 border border-gray-200 dark:border-gray-700 p-5">
+  <p class="text-sm text-gray-700 dark:text-gray-300 leading-relaxed mb-3">Although technically simpler than the food similarity engine, the Similarity &ndash; Non Food algorithm highlights several principles of effective data science practice:</p>
+  <div class="space-y-2">
+    <div class="flex items-center gap-2 text-sm font-medium text-gray-800 dark:text-gray-200"><span class="text-blue-500">&#9670;</span> Adapt <strong>model complexity</strong> to the available data</div>
+    <div class="flex items-center gap-2 text-sm font-medium text-gray-800 dark:text-gray-200"><span class="text-blue-500">&#9670;</span> Prioritize the <strong>strongest signal</strong> over increasing feature count</div>
+    <div class="flex items-center gap-2 text-sm font-medium text-gray-800 dark:text-gray-200"><span class="text-blue-500">&#9670;</span> Leverage <strong>complementary similarity techniques</strong> for robustness</div>
+    <div class="flex items-center gap-2 text-sm font-medium text-gray-800 dark:text-gray-200"><span class="text-blue-500">&#9670;</span> Reuse <strong>infrastructure</strong> to accelerate development cycles</div>
+  </div>
+</div>
+
+<p>Effective machine learning systems are not defined by complexity, but by how well they <strong>align with the structure of the problem</strong> they are designed to solve.</p>`,
             items: [
-              { title: 'Sentence Transformers' },
-              { title: 'FAISS' },
-              { title: 'Embeddings' },
-              { title: 'BigQuery' },
-              { title: 'Cloud Functions' },
               { title: 'Python' },
+              { title: 'NLP / TF-IDF' },
+              { title: 'Cosine Similarity' },
+              { title: 'BigQuery' },
+              { title: 'Cloud Composer (Airflow)' },
+              { title: 'Cloud Functions' },
+              { title: 'Streamlit' },
             ],
           },
           {
@@ -964,17 +1094,147 @@ export const translations = {
           },
           {
             id: 'similarity-nonfood',
-            title: 'Similarité - Non Alimentaire',
-            tagline: 'Embeddings · Catalogue Produit',
+            title: 'Similarit\u00e9 - Non Alimentaire',
+            tagline: 'NLP \u00b7 Similarit\u00e9 S\u00e9mantique',
             icon: 'tabler:device-laptop',
-            content: '<p>Construction d\'un <strong>moteur de similarité pour les produits non alimentaires</strong> (électronique, maison, textile, etc.) où les attributs produit sont moins structurés et les descriptions plus pauvres que pour l\'alimentaire.</p><p>Utilisation d\'<strong>embeddings sentence-transformer</strong> pour capturer le sens sémantique des titres et descriptions, combinés à l\'encodage de features catégorielles. Une <strong>recherche FAISS approximate nearest neighbor</strong> permet la récupération en temps réel des top-N produits similaires. Déployé en <strong>Cloud Function</strong> avec BigQuery comme feature store.</p>',
+            content: `<div class="not-prose mb-4">
+  <h3 class="text-xl font-bold text-blue-700 dark:text-blue-400">Adapter la similarit&eacute; aux donn&eacute;es pauvres</h3>
+  <p class="text-sm font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Conception du moteur &laquo; Similarit&eacute; &ndash; Non Alimentaire &raquo; chez Auchan</p>
+</div>
+
+<div class="not-prose mb-6 rounded-lg bg-blue-50/60 dark:bg-blue-900/15 border border-blue-100 dark:border-blue-800/50 px-4 py-3">
+  <p class="text-sm text-gray-700 dark:text-gray-300 flex items-start gap-2">
+    <svg class="w-4 h-4 mt-0.5 text-blue-500 dark:text-blue-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+    <span>Cet article s&rsquo;appuie sur les principes &eacute;tablis dans le moteur <a href="#similarity-food" class="font-semibold text-blue-600 dark:text-blue-400 hover:underline">Similarit&eacute; &ndash; Alimentaire</a>. Il est recommand&eacute; de lire cet article au pr&eacute;alable pour disposer du contexte architectural complet.</span>
+  </p>
+</div>
+
+<p>Apr&egrave;s le d&eacute;ploiement r&eacute;ussi du moteur de substitution Similarit&eacute; &ndash; Alimentaire, le d&eacute;fi suivant consistait &agrave; &eacute;tendre l&rsquo;approche aux <strong>produits non alimentaires</strong> de la plateforme e-commerce Auchan.</p>
+<p>&Agrave; premi&egrave;re vue, le probl&egrave;me semble identique : lorsqu&rsquo;un produit est indisponible, proposer des alternatives pertinentes pour pr&eacute;server l&rsquo;exp&eacute;rience client et r&eacute;duire l&rsquo;abandon de panier.</p>
+<p>Cependant, les produits non alimentaires pr&eacute;sentent un <strong>paysage de mod&eacute;lisation fondamentalement diff&eacute;rent</strong>. L&agrave; o&ugrave; les produits alimentaires disposent d&rsquo;attributs riches (ingr&eacute;dients, labels bio, donn&eacute;es nutritionnelles, normalisation du poids, etc.), les produits non alimentaires offrent des attributs structur&eacute;s bien moins nombreux.</p>
+<p>L&rsquo;enjeu n&rsquo;&eacute;tait pas de r&eacute;pliquer l&rsquo;algorithme alimentaire &mdash; mais d&rsquo;<strong>adapter l&rsquo;architecture</strong> &agrave; un environnement de donn&eacute;es plus simple tout en maintenant la qualit&eacute; des recommandations.</p>
+
+<div class="not-prose mt-8 mb-4">
+  <h3 class="text-lg font-semibold text-blue-700 dark:text-blue-400 flex items-center gap-2"><svg class="w-4 h-4 text-blue-500 dark:text-blue-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>Recadrage du probl&egrave;me</h3>
+</div>
+
+<p>Le comportement de substitution en non alimentaire est intrins&egrave;quement plus simple qu&rsquo;en alimentaire :</p>
+
+<div class="not-prose my-4 grid grid-cols-1 sm:grid-cols-2 gap-2">
+  <div class="flex items-center gap-2 rounded-lg bg-gray-100 dark:bg-slate-700/60 px-3 py-2 text-sm text-gray-700 dark:text-gray-300"><span class="text-blue-500 dark:text-blue-400 font-bold">&rsaquo;</span> Les attributs de type ingr&eacute;dient sont non pertinents</div>
+  <div class="flex items-center gap-2 rounded-lg bg-gray-100 dark:bg-slate-700/60 px-3 py-2 text-sm text-gray-700 dark:text-gray-300"><span class="text-blue-500 dark:text-blue-400 font-bold">&rsaquo;</span> Les comparaisons nutritionnelles ne s&rsquo;appliquent pas</div>
+  <div class="flex items-center gap-2 rounded-lg bg-gray-100 dark:bg-slate-700/60 px-3 py-2 text-sm text-gray-700 dark:text-gray-300"><span class="text-blue-500 dark:text-blue-400 font-bold">&rsaquo;</span> La similarit&eacute; de poids est rarement significative</div>
+  <div class="flex items-center gap-2 rounded-lg bg-gray-100 dark:bg-slate-700/60 px-3 py-2 text-sm text-gray-700 dark:text-gray-300"><span class="text-blue-500 dark:text-blue-400 font-bold">&rsaquo;</span> Le libell&eacute; produit devient le signal principal</div>
+</div>
+
+<p>Les d&eacute;cisions de substitution en non alimentaire sont principalement guid&eacute;es par la <strong>description produit et le sens s&eacute;mantique</strong>. Loin d&rsquo;&ecirc;tre un handicap, l&rsquo;espace d&rsquo;attributs limit&eacute; simplifie en r&eacute;alit&eacute; la strat&eacute;gie de mod&eacute;lisation. Avec moins de signaux concurrents, l&rsquo;effort se focalise sur l&rsquo;extraction maximale d&rsquo;information &agrave; partir des descriptions produit.</p>
+
+<div class="not-prose mt-8 mb-4">
+  <h3 class="text-lg font-semibold text-blue-700 dark:text-blue-400 flex items-center gap-2"><svg class="w-4 h-4 text-blue-500 dark:text-blue-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>Philosophie d&rsquo;architecture : simplicit&eacute; et pr&eacute;cision</h3>
+</div>
+
+<p>Le principe directeur du moteur non alimentaire est clair :</p>
+
+<div class="not-prose my-6 border-l-4 border-blue-500 dark:border-blue-400 pl-4 py-2">
+  <p class="text-base font-medium text-gray-800 dark:text-gray-100 italic">Lorsque l&rsquo;espace de signal est limit&eacute;, concentrer l&rsquo;effort sur l&rsquo;extraction maximale de valeur du signal le plus fort.</p>
+</div>
+
+<p>Dans ce cas, le signal le plus fort est le <strong>libell&eacute; produit</strong>.</p>
+<p>Plut&ocirc;t que de construire plusieurs mod&egrave;les de similarit&eacute; fond&eacute;s sur les attributs comme pour l&rsquo;alimentaire, l&rsquo;algorithme non alimentaire se concentre exclusivement sur la <strong>similarit&eacute; s&eacute;mantique entre libell&eacute;s produit</strong>.</p>
+<p>Pour am&eacute;liorer la robustesse et capter diff&eacute;rentes structures linguistiques, le syst&egrave;me calcule la similarit&eacute; &agrave; l&rsquo;aide de <strong>deux m&eacute;thodes s&eacute;mantiques compl&eacute;mentaires</strong> appliqu&eacute;es au libell&eacute; produit.</p>
+
+<div class="not-prose mt-8 mb-4">
+  <h3 class="text-lg font-semibold text-blue-700 dark:text-blue-400 flex items-center gap-2"><svg class="w-4 h-4 text-blue-500 dark:text-blue-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>Double mod&eacute;lisation s&eacute;mantique</h3>
+</div>
+
+<p>Le libell&eacute; produit &eacute;tant la source d&rsquo;information principale, l&rsquo;algorithme exploite <strong>deux approches distinctes de similarit&eacute; s&eacute;mantique</strong> pour analyser les descriptions sous des angles compl&eacute;mentaires.</p>
+<p>Chaque mod&egrave;le traite le libell&eacute; diff&eacute;remment et produit un score de similarit&eacute; ind&eacute;pendant. L&rsquo;un se focalise sur les <strong>patterns de similarit&eacute; lexicale</strong>, l&rsquo;autre capture des <strong>relations s&eacute;mantiques plus larges</strong> entre les mots.</p>
+<p>En combinant deux calculs de similarit&eacute; distincts, le syst&egrave;me gagne en robustesse face aux variations de formulation, de phras&eacute; et de conventions de nommage fr&eacute;quentes dans les catalogues de grande distribution.</p>
+<p>Cette approche garantit que l&rsquo;algorithme capte &agrave; la fois la <strong>similarit&eacute; de surface</strong> et les <strong>relations s&eacute;mantiques profondes</strong> entre produits, m&ecirc;me lorsque les descriptions ne sont pas identiques.</p>
+
+<div class="not-prose mt-8 mb-4">
+  <h3 class="text-lg font-semibold text-blue-700 dark:text-blue-400 flex items-center gap-2"><svg class="w-4 h-4 text-blue-500 dark:text-blue-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>Agr&eacute;gation pond&eacute;r&eacute;e</h3>
+</div>
+
+<p>Chaque mod&egrave;le de similarit&eacute; produit un score normalis&eacute; entre 0 et 1. Le score final est calcul&eacute; par agr&eacute;gation pond&eacute;r&eacute;e :</p>
+
+<div class="not-prose my-8 flex flex-col items-center">
+  <div class="w-full rounded-lg bg-gray-50 dark:bg-slate-800/50 py-6 px-8 text-center">
+    <p class="text-lg md:text-xl italic text-gray-800 dark:text-gray-100" style="font-family: 'Times New Roman', 'Georgia', 'CMU Serif', serif; letter-spacing: 0.02em;">Score final = <var>w</var><sub>1</sub> &middot; Similarit&eacute;<sub>Mod&egrave;le&thinsp;1</sub> + <var>w</var><sub>2</sub> &middot; Similarit&eacute;<sub>Mod&egrave;le&thinsp;2</sub></p>
+    <p class="mt-3 text-sm text-gray-500 dark:text-gray-400" style="font-family: 'Times New Roman', 'Georgia', serif;">O&ugrave; : &ensp; <var>w</var><sub>1</sub> + <var>w</var><sub>2</sub> = 1</p>
+  </div>
+</div>
+
+<p>Ce mod&egrave;le conserve les m&ecirc;mes avantages architecturaux introduits dans le moteur alimentaire :</p>
+
+<div class="not-prose my-3 space-y-1.5">
+  <div class="flex items-center gap-2 text-sm"><span class="text-blue-600 dark:text-blue-400">&rarr;</span> <strong class="text-gray-900 dark:text-gray-100">Scoring transparent</strong> <span class="text-gray-500 dark:text-gray-400">&rarr; r&eacute;sultats pleinement explicables</span></div>
+  <div class="flex items-center gap-2 text-sm"><span class="text-blue-600 dark:text-blue-400">&rarr;</span> <strong class="text-gray-900 dark:text-gray-100">Recommandations explicables</strong> <span class="text-gray-500 dark:text-gray-400">&rarr; confiance des &eacute;quipes m&eacute;tier</span></div>
+  <div class="flex items-center gap-2 text-sm"><span class="text-blue-600 dark:text-blue-400">&rarr;</span> <strong class="text-gray-900 dark:text-gray-100">Pond&eacute;ration ajustable</strong> <span class="text-gray-500 dark:text-gray-400">&rarr; param&eacute;trable par le m&eacute;tier</span></div>
+</div>
+
+<p>Bien que plus simple que le moteur alimentaire, la structure pond&eacute;r&eacute;e offre toujours <strong>flexibilit&eacute; et interpr&eacute;tabilit&eacute;</strong>.</p>
+
+<div class="not-prose mt-8 mb-4">
+  <h3 class="text-lg font-semibold text-blue-700 dark:text-blue-400 flex items-center gap-2"><svg class="w-4 h-4 text-blue-500 dark:text-blue-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>Passage &agrave; l&rsquo;&eacute;chelle</h3>
+</div>
+
+<p>L&rsquo;algorithme se concentrant principalement sur les libell&eacute;s produit, l&rsquo;empreinte computationnelle est <strong>nettement plus l&eacute;g&egrave;re</strong> que celle du moteur alimentaire. Cela permet au syst&egrave;me de :</p>
+
+<div class="not-prose my-4 grid grid-cols-1 sm:grid-cols-3 gap-2">
+  <div class="flex items-center gap-2 rounded-lg bg-blue-50 dark:bg-blue-900/20 p-3"><span class="text-blue-500 dark:text-blue-400">&#10003;</span><span class="text-sm font-medium text-gray-800 dark:text-gray-200">Calcul rapide sur de larges catalogues</span></div>
+  <div class="flex items-center gap-2 rounded-lg bg-blue-50 dark:bg-blue-900/20 p-3"><span class="text-blue-500 dark:text-blue-400">&#10003;</span><span class="text-sm font-medium text-gray-800 dark:text-gray-200">Faible complexit&eacute; op&eacute;rationnelle</span></div>
+  <div class="flex items-center gap-2 rounded-lg bg-blue-50 dark:bg-blue-900/20 p-3"><span class="text-blue-500 dark:text-blue-400">&#10003;</span><span class="text-sm font-medium text-gray-800 dark:text-gray-200">Scalabilit&eacute; efficace multi-cat&eacute;gories</span></div>
+</div>
+
+<p>La conception privil&eacute;gie d&eacute;lib&eacute;r&eacute;ment la <strong>rapidit&eacute;, la maintenabilit&eacute; et la robustesse</strong>.</p>
+
+<div class="not-prose mt-8 mb-4">
+  <h3 class="text-lg font-semibold text-blue-700 dark:text-blue-400 flex items-center gap-2"><svg class="w-4 h-4 text-blue-500 dark:text-blue-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>Du mod&egrave;le au d&eacute;ploiement</h3>
+</div>
+
+<p>L&rsquo;un des avantages majeurs de ce projet &eacute;tait la capacit&eacute; &agrave; <strong>r&eacute;utiliser l&rsquo;infrastructure</strong> mise en place lors du d&eacute;veloppement du moteur alimentaire.</p>
+<p>Le projet pr&eacute;c&eacute;dent avait d&eacute;j&agrave; &eacute;tabli :</p>
+
+<div class="not-prose my-4 grid grid-cols-2 gap-2">
+  <div class="flex items-center gap-2 rounded-lg bg-gray-100 dark:bg-slate-700/60 px-3 py-2 text-sm text-gray-700 dark:text-gray-300"><span class="text-blue-500 dark:text-blue-400 font-bold">&rsaquo;</span> Pipelines de calcul de similarit&eacute;</div>
+  <div class="flex items-center gap-2 rounded-lg bg-gray-100 dark:bg-slate-700/60 px-3 py-2 text-sm text-gray-700 dark:text-gray-300"><span class="text-blue-500 dark:text-blue-400 font-bold">&rsaquo;</span> Frameworks d&rsquo;&eacute;valuation</div>
+  <div class="flex items-center gap-2 rounded-lg bg-gray-100 dark:bg-slate-700/60 px-3 py-2 text-sm text-gray-700 dark:text-gray-300"><span class="text-blue-500 dark:text-blue-400 font-bold">&rsaquo;</span> Outils de test internes</div>
+  <div class="flex items-center gap-2 rounded-lg bg-gray-100 dark:bg-slate-700/60 px-3 py-2 text-sm text-gray-700 dark:text-gray-300"><span class="text-blue-500 dark:text-blue-400 font-bold">&rsaquo;</span> Workflows de d&eacute;ploiement</div>
+</div>
+
+<p>Le moteur non alimentaire est ainsi pass&eacute; de la conception au d&eacute;ploiement <strong>nettement plus rapidement</strong>.</p>
+
+<div class="not-prose my-6 border-l-4 border-amber-500 dark:border-amber-400 pl-4 py-2">
+  <p class="text-xs font-semibold text-amber-600 dark:text-amber-400 uppercase tracking-wider mb-1">Principe cl&eacute;</p>
+  <p class="text-base font-medium text-gray-800 dark:text-gray-100">Des syst&egrave;mes bien con&ccedil;us acc&eacute;l&egrave;rent l&rsquo;innovation future.</p>
+</div>
+
+<p>En capitalisant sur l&rsquo;architecture existante, le moteur de substitution non alimentaire a &eacute;t&eacute; impl&eacute;ment&eacute; et d&eacute;ploy&eacute; avec un <strong>surco&ucirc;t op&eacute;rationnel minimal</strong>.</p>
+
+<div class="not-prose mt-8 mb-4">
+  <h3 class="text-lg font-semibold text-blue-700 dark:text-blue-400 flex items-center gap-2"><svg class="w-4 h-4 text-blue-500 dark:text-blue-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>Enseignements cl&eacute;s</h3>
+</div>
+
+<div class="not-prose my-4 rounded-xl bg-gray-50 dark:bg-slate-800/40 border border-gray-200 dark:border-gray-700 p-5">
+  <p class="text-sm text-gray-700 dark:text-gray-300 leading-relaxed mb-3">Bien que techniquement plus simple que le moteur alimentaire, l&rsquo;algorithme Similarit&eacute; &ndash; Non Alimentaire met en lumi&egrave;re plusieurs principes d&rsquo;une pratique efficace en data science :</p>
+  <div class="space-y-2">
+    <div class="flex items-center gap-2 text-sm font-medium text-gray-800 dark:text-gray-200"><span class="text-blue-500">&#9670;</span> Adapter la <strong>complexit&eacute; du mod&egrave;le</strong> aux donn&eacute;es disponibles</div>
+    <div class="flex items-center gap-2 text-sm font-medium text-gray-800 dark:text-gray-200"><span class="text-blue-500">&#9670;</span> Prioriser le <strong>signal le plus fort</strong> plut&ocirc;t que multiplier les features</div>
+    <div class="flex items-center gap-2 text-sm font-medium text-gray-800 dark:text-gray-200"><span class="text-blue-500">&#9670;</span> Combiner des <strong>techniques de similarit&eacute; compl&eacute;mentaires</strong> pour la robustesse</div>
+    <div class="flex items-center gap-2 text-sm font-medium text-gray-800 dark:text-gray-200"><span class="text-blue-500">&#9670;</span> R&eacute;utiliser l&rsquo;<strong>infrastructure</strong> pour acc&eacute;l&eacute;rer les cycles de d&eacute;veloppement</div>
+  </div>
+</div>
+
+<p>Un syst&egrave;me de machine learning efficace ne se d&eacute;finit pas par sa complexit&eacute;, mais par la qualit&eacute; de son <strong>alignement avec la structure du probl&egrave;me</strong> qu&rsquo;il vise &agrave; r&eacute;soudre.</p>`,
             items: [
-              { title: 'Sentence Transformers' },
-              { title: 'FAISS' },
-              { title: 'Embeddings' },
-              { title: 'BigQuery' },
-              { title: 'Cloud Functions' },
               { title: 'Python' },
+              { title: 'NLP / TF-IDF' },
+              { title: 'Similarit\u00e9 Cosinus' },
+              { title: 'BigQuery' },
+              { title: 'Cloud Composer (Airflow)' },
+              { title: 'Cloud Functions' },
+              { title: 'Streamlit' },
             ],
           },
           {
