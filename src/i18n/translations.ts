@@ -142,6 +142,13 @@ export const translations = {
         title: 'Certification Timeline',
         items: [
           {
+            title: 'Professional Data Engineer',
+            description: 'Google Cloud · 2026\nDesigning, building, and operationalizing data processing systems on Google Cloud.',
+            icon: 'tabler:certificate',
+            link: 'https://www.credly.com/badges/2b9d66d6-68f2-4f43-a3ea-4f30a8c5a80b/public_url',
+            badge: '/images/badges/gcp-data-engineer.png',
+          },
+          {
             title: 'Apache Airflow 3 Fundamentals',
             description: 'Astronomer Academy · 2025\nOrchestration of data pipelines and workflow automation with Apache Airflow.',
             icon: 'tabler:certificate',
@@ -834,6 +841,13 @@ export const translations = {
       timeline: {
         title: 'Chronologie des certifications',
         items: [
+          {
+            title: 'Professional Data Engineer',
+            description: 'Google Cloud · 2026\nConception, construction et exploitation de systèmes de traitement des données sur Google Cloud.',
+            icon: 'tabler:certificate',
+            link: 'https://www.credly.com/badges/2b9d66d6-68f2-4f43-a3ea-4f30a8c5a80b/public_url',
+            badge: '/images/badges/gcp-data-engineer.png',
+          },
           {
             title: 'Apache Airflow 3 Fundamentals',
             description: 'Astronomer Academy · 2025\nOrchestration de pipelines de données et automatisation des workflows avec Apache Airflow.',
